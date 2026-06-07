@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Download, ExternalLink, Sun, Moon } from 'lucide-react';
+import { Download, ExternalLink, Sun, Moon, Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const projects = [
@@ -61,6 +61,7 @@ function SectionHeading({ title }) {
 }
 
 function Navbar({ isDark, setIsDark }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const links = [
     ['About', '#about'],
     ['Experience', '#experience'],
@@ -76,7 +77,7 @@ function Navbar({ isDark, setIsDark }) {
       transition={{ duration: 0.4, ease: 'easeOut' }}
       className="sticky top-0 z-50 border-b border-[#e8e0d0] dark:border-[#3a3530] bg-[#f5f0e8] dark:bg-[#1c1814] h-16 transition-colors duration-300"
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-8 h-full">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 sm:px-8 h-full">
         <a href="#home" className="font-semibold text-lg text-[#1a1a1a] dark:text-white transition-colors duration-300">
           RAP.
         </a>
@@ -93,7 +94,39 @@ function Navbar({ isDark, setIsDark }) {
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
         </nav>
+        <div className="flex items-center gap-4 md:hidden">
+          <button
+            onClick={() => setIsDark(prev => !prev)}
+            className="w-9 h-9 rounded-full flex items-center justify-center border border-[#e8e0d0] dark:border-[#3a3530] text-[#1a1a1a] dark:text-white hover:bg-[#e8e0d0] dark:hover:bg-[#3a3530] transition-colors duration-300"
+          >
+            {isDark ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="w-9 h-9 rounded-full flex items-center justify-center border border-[#e8e0d0] dark:border-[#3a3530] text-[#1a1a1a] dark:text-white hover:bg-[#e8e0d0] dark:hover:bg-[#3a3530] transition-colors duration-300"
+          >
+            {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
+          </button>
+        </div>
       </div>
+      {isMenuOpen && (
+        <motion.nav
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="md:hidden bg-[#f5f0e8] dark:bg-[#1c1814] w-full py-4 px-6 flex flex-col gap-4 border-b border-[#e8e0d0] dark:border-[#3a3530] transition-colors duration-300"
+        >
+          {links.map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              onClick={() => setIsMenuOpen(false)}
+              className="text-base font-medium text-[#1a1a1a] dark:text-white transition hover:text-[#b5651d] transition-colors duration-300"
+            >
+              {label}
+            </a>
+          ))}
+        </motion.nav>
+      )}
     </motion.header>
   );
 }
@@ -101,9 +134,20 @@ function Navbar({ isDark, setIsDark }) {
 function Hero() {
   return (
     <section id="home" className="bg-[#f5f0e8] dark:bg-[#1c1814] transition-colors duration-300">
-      <div className="mx-auto max-w-5xl px-8 py-12">
-        <div className="grid grid-cols-3 gap-4 items-center">
-          <div className="col-span-2">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-8 sm:py-16">
+        <div className="flex flex-col md:grid md:grid-cols-3 gap-8 items-center">
+          <div className="order-1 md:order-2 md:col-span-1 flex justify-center">
+            <motion.img
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.3 }}
+              src="/Prado.jpg"
+              alt="Rene Angelo Prado"
+              className="w-40 h-40 md:w-56 md:h-56 rounded-2xl object-cover"
+            />
+          </div>
+          <div className="order-2 md:order-1 md:col-span-2 text-center md:text-left">
             <motion.p
               variants={fadeUp}
               initial="hidden"
@@ -118,7 +162,7 @@ function Hero() {
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.2 }}
-              className="mt-4 text-6xl font-bold tracking-tight text-[#1a1a1a] dark:text-white transition-colors duration-300"
+              className="mt-4 text-4xl md:text-6xl font-bold tracking-tight text-[#1a1a1a] dark:text-white transition-colors duration-300"
             >
               Rene Angelo Prado
             </motion.h1>
@@ -137,17 +181,17 @@ function Hero() {
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.4 }}
-              className="mt-6 flex flex-wrap gap-3"
+              className="mt-6 flex flex-row items-center gap-2 flex-nowrap justify-center md:justify-start"
             >
               <a
                 href="#projects"
-                className="rounded-full bg-[#1a1a1a] dark:bg-white px-6 py-2.5 text-sm font-semibold text-[#f5f0e8] dark:text-[#1c1814] transition hover:bg-[#2a2a2a] dark:hover:bg-[#e0e0e0] transition-colors duration-300"
+                className="rounded-full bg-[#1a1a1a] dark:bg-white px-4 py-2 sm:px-6 sm:py-2.5 text-sm font-semibold text-[#f5f0e8] dark:text-[#1c1814] transition hover:bg-[#2a2a2a] dark:hover:bg-[#e0e0e0] transition-colors duration-300"
               >
                 View Projects
               </a>
               <a
                 href="#contact"
-                className="rounded-full border border-[#1a1a1a] dark:border-white px-6 py-2.5 text-sm font-semibold text-[#1a1a1a] dark:text-white transition hover:border-[#b5651d] hover:text-[#b5651d] transition-colors duration-300"
+                className="rounded-full border border-[#1a1a1a] dark:border-white px-4 py-2 sm:px-6 sm:py-2.5 text-sm font-semibold text-[#1a1a1a] dark:text-white transition hover:border-[#b5651d] hover:text-[#b5651d] transition-colors duration-300"
               >
                 Contact Me
               </a>
@@ -155,7 +199,7 @@ function Hero() {
                 href="/resume/Resume - Prado.pdf"
                 download="Rene_Angelo_Prado_CV"
                 title="Download CV"
-                className="w-10 h-10 rounded-full bg-[#1a1a1a] dark:bg-white text-[#f5f0e8] dark:text-[#1c1814] flex items-center justify-center hover:opacity-80 transition-all duration-200 transition-colors duration-300"
+                className="w-9 h-9 rounded-full bg-[#1a1a1a] dark:bg-white text-[#f5f0e8] dark:text-[#1c1814] flex items-center justify-center hover:opacity-80 transition-all duration-200 transition-colors duration-300"
               >
                 <Download size={16} />
               </a>
@@ -164,23 +208,11 @@ function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Preview CV"
-                className="w-10 h-10 rounded-full border border-[#1a1a1a] dark:border-white text-[#1a1a1a] dark:text-white flex items-center justify-center hover:bg-[#1a1a1a] hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 transition-colors duration-300"
+                className="w-9 h-9 rounded-full border border-[#1a1a1a] dark:border-white text-[#1a1a1a] dark:text-white flex items-center justify-center hover:bg-[#1a1a1a] hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 transition-colors duration-300"
               >
                 <ExternalLink size={16} />
               </a>
             </motion.div>
-          </div>
-
-          <div className="col-span-1 flex justify-center">
-            <motion.img
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.3 }}
-              src="/Prado.jpg"
-              alt="Rene Angelo Prado"
-              className="w-56 h-56 rounded-2xl object-cover"
-            />
           </div>
         </div>
       </div>
@@ -198,7 +230,7 @@ function About() {
       id="about"
       className="bg-[#f5f0e8] dark:bg-[#1c1814] transition-colors duration-300 scroll-mt-24"
     >
-      <div className="mx-auto max-w-5xl px-8 py-12">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-8 sm:py-16">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-[#1a1a1a] dark:text-white mb-6 transition-colors duration-300">About</h2>
           <p className="text-lg leading-7 text-[#5c5046] dark:text-[#a89f94] transition-colors duration-300">
@@ -221,13 +253,13 @@ function Education() {
       id="education"
       className="bg-[#f5f0e8] dark:bg-[#1c1814] transition-colors duration-300"
     >
-      <div className="mx-auto max-w-5xl px-8 py-12">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-8 sm:py-16">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-[#1a1a1a] dark:text-white mb-6 transition-colors duration-300">Education</h2>
           <motion.div
             whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
             transition={{ duration: 0.2 }}
-            className="rounded-2xl bg-[#fffdf9] dark:bg-[#242018] p-6 shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
+            className="rounded-2xl bg-[#fffdf9] dark:bg-[#242018] p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
           >
             <h3 className="text-lg font-semibold text-[#1a1a1a] dark:text-white transition-colors duration-300">New Era University</h3>
             <p className="mt-1 text-sm text-[#8a7f72] dark:text-[#a89f94] transition-colors duration-300">BS Computer Science, 2022–2026</p>
@@ -257,12 +289,12 @@ function Experience() {
       id="experience"
       className="bg-[#f5f0e8] dark:bg-[#1c1814] transition-colors duration-300 scroll-mt-24"
     >
-      <div className="mx-auto max-w-5xl px-8 py-12">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-8 sm:py-16">
         <h2 className="text-3xl font-bold tracking-tight text-[#1a1a1a] dark:text-white mb-6 transition-colors duration-300">Experience</h2>
         <motion.div
           whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
           transition={{ duration: 0.2 }}
-          className="rounded-2xl bg-[#fffdf9] dark:bg-[#242018] p-6 shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
+          className="rounded-2xl bg-[#fffdf9] dark:bg-[#242018] p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
         >
           <div className="flex flex-col gap-2 pb-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -271,7 +303,7 @@ function Experience() {
             <p className="text-xs font-medium uppercase tracking-widest text-[#b5651d]">Internship</p>
           </div>
           <p className="pb-4 text-sm text-[#8a7f72] dark:text-[#a89f94] border-b border-[#e8e0d0] dark:border-[#3a3530] transition-colors duration-300">Simplevia · 2025</p>
-          <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-1 text-sm text-[#1a1a1a] dark:text-white transition-colors duration-300">
+          <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-[#1a1a1a] dark:text-white transition-colors duration-300">
             {items.map((item) => (
               <li key={item} className="leading-6">
                 <div className="flex items-start gap-2">
@@ -297,14 +329,14 @@ function Projects() {
       id="projects"
       className="bg-[#f5f0e8] dark:bg-[#1c1814] transition-colors duration-300 scroll-mt-24"
     >
-      <div className="mx-auto max-w-5xl px-8 py-12">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-8 sm:py-16">
         <h2 className="text-3xl font-bold tracking-tight text-[#1a1a1a] dark:text-white mb-6 transition-colors duration-300">Projects</h2>
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid gap-4 grid-cols-3"
+          className="grid gap-4 grid-cols-1 sm:grid-cols-3"
         >
           {projects.map((project, index) => (
             <motion.article
@@ -312,7 +344,7 @@ function Projects() {
               variants={fadeUp}
               whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
               transition={{ duration: 0.2 }}
-              className="flex h-full flex-col rounded-2xl bg-[#fffdf9] dark:bg-[#242018] p-6 shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
+              className="flex h-full flex-col rounded-2xl bg-[#fffdf9] dark:bg-[#242018] p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
             >
               <div className="flex flex-col justify-between h-full">
                 <div>
@@ -353,7 +385,7 @@ function Skills() {
       id="skills"
       className="bg-[#f5f0e8] dark:bg-[#1c1814] transition-colors duration-300 scroll-mt-24"
     >
-      <div className="mx-auto max-w-5xl px-8 py-12">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-8 sm:py-16">
         <h2 className="text-3xl font-bold tracking-tight text-[#1a1a1a] dark:text-white mb-6 transition-colors duration-300">Skills</h2>
         <motion.div
           variants={staggerContainer}
@@ -368,7 +400,7 @@ function Skills() {
               variants={fadeUp}
               whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
               transition={{ duration: 0.2 }}
-              className="h-full rounded-2xl bg-[#fffdf9] dark:bg-[#242018] p-5 shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
+              className="h-full rounded-2xl bg-[#fffdf9] dark:bg-[#242018] p-4 sm:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
             >
               <p className="text-xs tracking-widest text-[#8a7f72] dark:text-[#a89f94] uppercase transition-colors duration-300">{group.label}</p>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -403,7 +435,7 @@ function Contact() {
       id="contact"
       className="bg-[#f5f0e8] dark:bg-[#1c1814] transition-colors duration-300 scroll-mt-24"
     >
-      <div className="mx-auto max-w-5xl px-8 py-12">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-8 sm:py-16">
         <h2 className="text-3xl font-bold tracking-tight text-[#1a1a1a] dark:text-white mb-6 transition-colors duration-300">Contact</h2>
         <motion.div
           variants={staggerContainer}
@@ -421,7 +453,7 @@ function Contact() {
               href={item.href}
               target={item.href.startsWith('http') ? '_blank' : undefined}
               rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
-              className="flex flex-col p-5 rounded-2xl bg-[#fffdf9] dark:bg-[#242018] shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
+              className="flex flex-col p-4 sm:p-5 rounded-2xl bg-[#fffdf9] dark:bg-[#242018] shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
             >
               <p className="text-xs tracking-widest text-[#8a7f72] dark:text-[#a89f94] uppercase transition-colors duration-300">{item.label}</p>
               <p className="mt-1 text-sm font-medium text-[#1a1a1a] dark:text-white truncate transition-colors duration-300">{item.value}</p>
@@ -436,7 +468,7 @@ function Contact() {
 function Footer() {
   return (
     <footer className="border-t border-[#e8e0d0] dark:border-[#3a3530] bg-[#f5f0e8] dark:bg-[#1c1814] transition-colors duration-300">
-      <div className="mx-auto max-w-5xl px-8 py-8 text-center">
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-8 text-center">
         <p className="text-sm text-[#8a7f72] dark:text-[#a89f94] transition-colors duration-300">© 2026 Rene Angelo Prado</p>
       </div>
     </footer>
