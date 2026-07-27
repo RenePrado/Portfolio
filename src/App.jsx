@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Download, ExternalLink, Sun, Moon, Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const projects = [
   {
-    title: 'NEU Compare',
+    title: 'Curriculum Comparison System',
     description:
       'AI-assisted platform for curriculum comparison and credit validation. Designed to compare syllabi and generate credit equivalency recommendations.',
     link: '#',
   },
   {
-    title: 'NEU Recre Reservation System',
+    title: 'Facility Reservation Management System',
     description:
       'Web-based facility reservation system with Admin and User modules. Built with React.js and Supabase for a clean booking flow.',
     link: '#',
@@ -52,15 +52,7 @@ const staggerContainer = {
   visible: { transition: { staggerChildren: 0.1 } }
 };
 
-function SectionHeading({ title }) {
-  return (
-    <div className="max-w-3xl">
-      <h2 className="text-4xl font-bold tracking-tight text-gray-900">{title}</h2>
-    </div>
-  );
-}
-
-function Navbar({ isDark, setIsDark }) {
+function Navbar({ isDark, onToggleTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const links = [
     ['About', '#about'],
@@ -88,7 +80,7 @@ function Navbar({ isDark, setIsDark }) {
             </a>
           ))}
           <button
-            onClick={() => setIsDark(prev => !prev)}
+            onClick={onToggleTheme}
             className="w-9 h-9 rounded-full flex items-center justify-center border border-[#e8e0d0] dark:border-[#3a3530] text-[#1a1a1a] dark:text-white hover:bg-[#e8e0d0] dark:hover:bg-[#3a3530] transition-colors duration-300"
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
@@ -96,7 +88,7 @@ function Navbar({ isDark, setIsDark }) {
         </nav>
         <div className="flex items-center gap-4 md:hidden">
           <button
-            onClick={() => setIsDark(prev => !prev)}
+            onClick={onToggleTheme}
             className="w-9 h-9 rounded-full flex items-center justify-center border border-[#e8e0d0] dark:border-[#3a3530] text-[#1a1a1a] dark:text-white hover:bg-[#e8e0d0] dark:hover:bg-[#3a3530] transition-colors duration-300"
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
@@ -234,7 +226,7 @@ function About() {
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-[#1a1a1a] dark:text-white mb-6 transition-colors duration-300">About</h2>
           <p className="text-lg leading-7 text-[#5c5046] dark:text-[#a89f94] transition-colors duration-300">
-            I am a Front-End Developer who values clean interfaces, reliable code, and practical user experiences. 
+            I am a Front-End Developer who values clean interfaces, reliable code, and practical user experiences.
             I enjoy building modern web pages with a minimal, developer-focused approach.
           </p>
         </div>
@@ -262,8 +254,7 @@ function Education() {
             className="rounded-2xl bg-[#fffdf9] dark:bg-[#242018] p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
           >
             <h3 className="text-lg font-semibold text-[#1a1a1a] dark:text-white transition-colors duration-300">New Era University</h3>
-            <p className="mt-1 text-sm text-[#8a7f72] dark:text-[#a89f94] transition-colors duration-300">BS Computer Science, 2022–2026</p>
-            <p className="mt-1 text-sm text-[#8a7f72] dark:text-[#a89f94] transition-colors duration-300">Dean&apos;s Lister 2024–2025</p>
+            <p className="mt-1 text-sm text-[#8a7f72] dark:text-[#a89f94] transition-colors duration-300">BS Computer Science, Graduated</p>
           </motion.div>
         </div>
       </div>
@@ -452,7 +443,7 @@ function Contact() {
               transition={{ duration: 0.2 }}
               href={item.href}
               target={item.href.startsWith('http') ? '_blank' : undefined}
-              rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+              rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="flex flex-col p-4 sm:p-5 rounded-2xl bg-[#fffdf9] dark:bg-[#242018] shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300"
             >
               <p className="text-xs tracking-widest text-[#8a7f72] dark:text-[#a89f94] uppercase transition-colors duration-300">{item.label}</p>
@@ -479,10 +470,28 @@ export default function App() {
   const [isDark, setIsDark] = useState(
     () => localStorage.getItem('theme') === 'dark'
   );
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const transitionTimeout = useRef(null);
+
+  const toggleTheme = () => {
+    setIsTransitioning(true);
+    setIsDark(prev => !prev);
+    if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
+    transitionTimeout.current = setTimeout(() => {
+      setIsTransitioning(false);
+      transitionTimeout.current = null;
+    }, 300);
+  };
 
   useEffect(() => {
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   }, [isDark]);
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
+    };
+  }, []);
 
   useEffect(() => {
     const favicon = document.querySelector('link[rel="icon"]');
@@ -499,7 +508,10 @@ export default function App() {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 bg-[#f5f0e8] dark:bg-[#1c1814] text-[#1a1a1a] dark:text-white font-[Inter] ${isDark ? 'dark' : ''}`}>
-      <Navbar isDark={isDark} setIsDark={setIsDark} />
+      {isTransitioning && (
+        <style>{`*, *::before, *::after { transition: color 300ms ease, background-color 300ms ease, border-color 300ms ease !important; }`}</style>
+      )}
+      <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
       <main>
         <Hero />
         <About />
