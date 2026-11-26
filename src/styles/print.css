@@ -34,7 +34,8 @@
   .index-rail,
   .skip-link,
   .mobile-menu,
-  header .header-actions {
+  .site-header__actions,
+  .copy-email__btn {
     display: none !important;
   }
 
@@ -51,6 +52,12 @@
 
   .grid12 {
     display: block;
+  }
+
+  .project-row,
+  .journey__entry,
+  .contact__rows li {
+    break-inside: avoid;
   }
 
   .hero-name {
