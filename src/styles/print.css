@@ -1,0 +1,69 @@
+/* Print — one-page résumé-style output. */
+
+@media print {
+  :root {
+    --paper: #ffffff;
+    --surface: #ffffff;
+    --ink: #1c1814;
+    --muted: #44403a;
+    --line: #d6d0c4;
+  }
+
+  html[data-theme='dark'] {
+    --paper: #ffffff;
+    --surface: #ffffff;
+    --ink: #1c1814;
+    --muted: #44403a;
+    --line: #d6d0c4;
+    --accent: #9c4f16;
+  }
+
+  @page {
+    margin: 14mm 12mm;
+  }
+
+  body {
+    background: #fff;
+    color: #1c1814;
+    font-size: 10pt;
+  }
+
+  .no-print,
+  .inspect-overlay,
+  .preview-plate,
+  .index-rail,
+  .skip-link,
+  .mobile-menu,
+  header .header-actions {
+    display: none !important;
+  }
+
+  header.site-header {
+    position: static;
+    border-bottom: 1px solid #d6d0c4;
+    padding-block: 4mm;
+  }
+
+  main section {
+    padding-block: 4mm !important;
+    break-inside: avoid;
+  }
+
+  .grid12 {
+    display: block;
+  }
+
+  .hero-name {
+    font-size: 26pt;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-height: 30mm;
+    width: auto;
+  }
+}
