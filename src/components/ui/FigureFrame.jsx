@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property -- React 18 DOM only accepts lowercase fetchpriority */
 import { useState } from 'react';
 
 // FigureFrame — the page's only ornament: L-shaped crop marks + mono
@@ -42,7 +43,7 @@ export default function FigureFrame({
               height={height}
               alt={alt}
               loading={fetchPriority === 'high' ? 'eager' : 'lazy'}
-              fetchPriority={fetchPriority}
+              fetchpriority={fetchPriority}
               decoding="async"
               onError={() => setFailed(true)}
             />

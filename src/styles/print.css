@@ -1,4 +1,4 @@
-/* Print — one-page résumé-style output. */
+/* Print — compact one-page résumé-style output. */
 
 @media print {
   :root {
@@ -9,7 +9,7 @@
     --line: #d6d0c4;
   }
 
-  html[data-theme='dark'] {
+  :root[data-theme='dark'] {
     --paper: #ffffff;
     --surface: #ffffff;
     --ink: #1c1814;
@@ -19,13 +19,14 @@
   }
 
   @page {
-    margin: 14mm 12mm;
+    margin: 9mm 10mm;
   }
 
   body {
     background: #fff;
     color: #1c1814;
-    font-size: 10pt;
+    font-size: 8pt;
+    line-height: 1.3;
   }
 
   .no-print,
@@ -35,18 +36,32 @@
   .skip-link,
   .mobile-menu,
   .site-header__actions,
-  .copy-email__btn {
+  .copy-email__btn,
+  .hero__figure,
+  .hero__ctas,
+  .hero__meta,
+  .project-row__thumb,
+  .project-row__contribution,
+  .journey__rail,
+  .about__placeholder {
     display: none !important;
   }
 
   header.site-header {
     position: static;
     border-bottom: 1px solid #d6d0c4;
-    padding-block: 4mm;
+    padding-block: 2mm;
+  }
+  .site-header__inner {
+    height: auto;
+  }
+  .site-nav {
+    display: none !important;
   }
 
   main section {
-    padding-block: 4mm !important;
+    padding-block: 2mm !important;
+    border-top: none;
     break-inside: avoid;
   }
 
@@ -54,14 +69,177 @@
     display: block;
   }
 
-  .project-row,
-  .journey__entry,
-  .contact__rows li {
-    break-inside: avoid;
+  .hero {
+    padding-block: 2mm 3mm !important;
+  }
+  .hero__name {
+    font-size: 20pt;
+    margin-top: 1mm;
+  }
+  .hero__role {
+    font-size: 8pt;
+  }
+  .hero__intro {
+    font-size: 9pt;
+    margin-top: 1.5mm;
+    max-width: none;
+  }
+  .hero__ctas {
+    margin-top: 2mm;
+  }
+  .hero__resume,
+  .hero__meta {
+    margin-top: 1.5mm;
+    font-size: 8pt;
   }
 
-  .hero-name {
-    font-size: 26pt;
+  .section-head {
+    padding-bottom: 1.5mm;
+    gap: 2mm;
+  }
+  .section-index {
+    font-size: 8pt;
+  }
+  .section-title {
+    font-size: 13pt;
+  }
+  .section-head__rule {
+    display: none;
+  }
+
+  .about__body {
+    margin-top: 2mm;
+    font-size: 9pt;
+    gap: 1.5mm;
+  }
+  .about__col {
+    max-width: none;
+  }
+
+  .projects-index {
+    border-top: none;
+  }
+  .project-row {
+    padding-block: 2mm;
+    break-inside: avoid;
+  }
+  .project-row__main {
+    display: block;
+  }
+  .project-row__index {
+    display: inline;
+    margin-right: 2mm;
+  }
+  .project-row__title {
+    display: inline;
+    font-size: 10pt;
+  }
+  .project-row__objective,
+  .project-row__contribution {
+    display: inline;
+    font-size: 8.5pt;
+    color: #44403a;
+  }
+  .project-row__objective::after {
+    content: ' ';
+  }
+  .project-row__dates,
+  .project-row__tech,
+  .project-row__links {
+    display: inline;
+    font-size: 8pt;
+    color: #44403a;
+    margin: 0 0 0 2mm;
+  }
+  .project-row__dates::before {
+    content: '· ';
+  }
+  .project-row__contribution {
+    display: block;
+    margin-top: 0.5mm;
+  }
+
+  .journey {
+    margin-top: 2mm;
+  }
+  .journey__list {
+    gap: 2.5mm;
+    padding-left: 0;
+  }
+  .journey__entry {
+    display: block;
+  }
+  .journey__dates {
+    display: inline;
+    font-size: 8pt;
+    color: #44403a;
+    margin-right: 2mm;
+  }
+  .journey__role {
+    display: inline;
+    font-size: 10pt;
+  }
+  .journey__org {
+    font-size: 9pt;
+  }
+  .journey__kind {
+    display: inline;
+    font-size: 7.5pt;
+    margin-right: 1.5mm;
+  }
+  .journey__bullets {
+    margin-top: 0.5mm;
+    font-size: 8.5pt;
+    gap: 0.5mm;
+    padding-left: 3mm;
+  }
+  .journey__bullets li::before {
+    content: '– ';
+    position: static;
+  }
+  .journey__bullets li {
+    padding-left: 0;
+  }
+
+  .stack {
+    margin-top: 2mm;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2mm;
+  }
+  .stack__label {
+    font-size: 7.5pt;
+    padding-bottom: 1mm;
+  }
+  .stack__list {
+    margin-top: 1mm;
+    font-size: 8pt;
+    gap: 0.5mm;
+  }
+
+  .contact {
+    margin-top: 3mm;
+  }
+  .contact__email {
+    font-size: 15pt;
+  }
+  .contact__rows {
+    margin-top: 2mm;
+  }
+  .contact__rows li {
+    padding-block: 0.8mm;
+    font-size: 8.5pt;
+  }
+  .contact__key {
+    flex-basis: 4.5rem;
+    font-size: 7.5pt;
+  }
+
+  .site-footer {
+    padding-block: 2mm;
+    break-inside: avoid;
+  }
+  .site-footer__line {
+    font-size: 7.5pt;
   }
 
   a {
@@ -69,8 +247,7 @@
     text-decoration: none;
   }
 
-  img {
-    max-height: 30mm;
-    width: auto;
+  h1, h2, h3 {
+    font-variation-settings: 'opsz' 14;
   }
 }

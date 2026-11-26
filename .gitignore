@@ -1,2 +1,5 @@
 node_modules
 dist
+scripts/.prerender-bundle.mjs
+lh-*.json
+preview.log

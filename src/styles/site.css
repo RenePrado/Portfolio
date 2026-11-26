@@ -487,9 +487,6 @@
   .project-row__links {
     justify-content: flex-end;
   }
-  .project-row__link {
-    min-height: 0;
-  }
 }
 
 /* Touch devices: static thumb inside the row */
@@ -807,7 +804,7 @@
     display: flex;
     align-items: baseline;
     gap: var(--space-2);
-    min-height: 32px;
+    min-height: 44px;
     font-size: var(--step--1);
     letter-spacing: 0.06em;
     text-transform: uppercase;

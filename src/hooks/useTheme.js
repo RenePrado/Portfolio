@@ -26,8 +26,10 @@ function apply(theme) {
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState(
-    () => document.documentElement.dataset.theme || systemTheme()
+  const [theme, setTheme] = useState(() =>
+    typeof document === 'undefined'
+      ? 'light'
+      : document.documentElement.dataset.theme || systemTheme()
   );
 
   const toggle = useCallback(() => {

@@ -51,6 +51,15 @@
       type="font/woff2"
       crossorigin
     />
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      href="/assets/portrait/portrait-800.avif"
+      imagesrcset="/assets/portrait/portrait-480.avif 480w, /assets/portrait/portrait-800.avif 800w"
+      imagesizes="(min-width: 1024px) 280px, 40vw"
+      fetchpriority="high"
+    />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -60,7 +69,14 @@
       // Set the theme before first paint to avoid a flash of the wrong theme.
       (function () {
         try {
-          var t = localStorage.getItem('theme');
+          var t = null;
+          var m = /[?&]theme=(dark|light)/.exec(window.location.search);
+          if (m) {
+            t = m[1];
+            localStorage.setItem('theme', t);
+          } else {
+            t = localStorage.getItem('theme');
+          }
           if (t !== 'dark' && t !== 'light') {
             t = window.matchMedia('(prefers-color-scheme: dark)').matches
               ? 'dark'
@@ -77,7 +93,7 @@
 
   <body>
 
-    <div id="root"></div>
+    <div id="root"><!--app--><!--/app--></div>
 
     <script type="module" src="/src/main.jsx"></script>
 

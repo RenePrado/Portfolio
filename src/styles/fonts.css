@@ -2,6 +2,18 @@
    Files live in /public/fonts so URLs are stable and pre-loadable.
    Licenses: SIL OFL 1.1 — see public/fonts/OFL.txt */
 
+/* Metric-matched fallbacks reduce CLS during font swap.
+   Fraunces (upem 2000): asc 97.8% / desc 25.5% / x-height ratio ≈ Georgia.
+   Georgia metrics measured from the local system font. */
+@font-face {
+  font-family: 'Fraunces Fallback';
+  src: local('Georgia');
+  size-adjust: 100.1%;
+  ascent-override: 97.8%;
+  descent-override: 25.5%;
+  line-gap-override: 0%;
+}
+
 @font-face {
   font-family: 'Fraunces Variable';
   font-style: normal;

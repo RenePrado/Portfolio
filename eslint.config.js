@@ -5,11 +5,11 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default [
-  { ignores: ['dist', 'node_modules', 'public'] },
+  { ignores: ['dist', 'node_modules', 'public', 'scripts/.prerender-bundle.mjs'] },
   js.configs.recommended,
   {
     files: ['scripts/**/*.mjs'],
-    languageOptions: { globals: { ...globals.node } }
+    languageOptions: { globals: { ...globals.node, ...globals.browser } }
   },
   {
     files: ['**/*.{js,jsx}'],

@@ -5,11 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "images": "node scripts/optimize-images.mjs",
-    "contrast": "node scripts/check-contrast.mjs"
+    "contrast": "node scripts/check-contrast.mjs",
+    "verify": "node scripts/verify.mjs",
+    "audit": "node scripts/audit.mjs"
+  },
+  "knip": {
+    "entry": ["scripts/*.mjs", "scripts/*.jsx"]
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -19,11 +24,13 @@
     "@eslint/js": "^9.39.5",
     "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.20",
+    "esbuild": "^0.28.2",
     "eslint": "^9.39.5",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.14.0",
+    "playwright": "^1.65.1",
     "postcss": "^8.4.47",
     "sharp": "^0.35.5",
     "tailwindcss": "^3.4.13",
