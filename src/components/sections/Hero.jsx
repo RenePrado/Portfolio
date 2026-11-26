@@ -64,10 +64,13 @@ export default function Hero() {
           <FigureFrame
             src={profile.portrait.src}
             srcSet={profile.portrait.srcSet}
+            avifSrcSet={profile.portrait.avifSrcSet}
+            webpSrcSet={profile.portrait.webpSrcSet}
             sizes={profile.portrait.sizes}
             width={profile.portrait.width}
             height={profile.portrait.height}
             alt={profile.portrait.alt}
+            fetchPriority={profile.portrait.fetchPriority}
             caption="Fig. 01 — Rene Angelo Prado, Quezon City"
             className="hero__frame"
           />

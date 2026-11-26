@@ -1,8 +1,6 @@
 /* Base — fonts, reset, typography, focus, motion policy. */
 
-@import '@fontsource-variable/fraunces/full.css';
-@import '@fontsource-variable/inter/index.css';
-@import '@fontsource-variable/jetbrains-mono/index.css';
+@import './fonts.css';
 
 @tailwind base;
 @tailwind components;

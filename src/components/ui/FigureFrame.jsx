@@ -6,11 +6,14 @@ import { useState } from 'react';
 export default function FigureFrame({
   src,
   srcSet,
+  avifSrcSet,
+  webpSrcSet,
   sizes,
   width,
   height,
   alt = '',
   caption,
+  fetchPriority,
   className = ''
 }) {
   const [failed, setFailed] = useState(false);
@@ -24,17 +27,26 @@ export default function FigureFrame({
       <span className="crop crop--br" aria-hidden="true" />
       <div className="fig-frame__media">
         {showImage ? (
-          <img
-            src={src}
-            srcSet={srcSet}
-            sizes={sizes}
-            width={width}
-            height={height}
-            alt={alt}
-            loading="lazy"
-            decoding="async"
-            onError={() => setFailed(true)}
-          />
+          <picture>
+            {avifSrcSet ? (
+              <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
+            ) : null}
+            {webpSrcSet ? (
+              <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
+            ) : null}
+            <img
+              src={src}
+              srcSet={srcSet}
+              sizes={sizes}
+              width={width}
+              height={height}
+              alt={alt}
+              loading={fetchPriority === 'high' ? 'eager' : 'lazy'}
+              fetchPriority={fetchPriority}
+              decoding="async"
+              onError={() => setFailed(true)}
+            />
+          </picture>
         ) : (
           <div
             className="fig-frame__pending"

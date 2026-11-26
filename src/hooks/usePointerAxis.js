@@ -1,22 +1,22 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 const FINE_POINTER =
   '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)';
 
+const REST = { wght: 560, opsz: 144, soft: 0 };
+const RANGE = { wght: 90, opsz: 24, soft: 22 };
+
 // Variable-type hero: pointer x-position drives the name's wght/opsz/SOFT
 // axes through CSS custom properties on `el`. One rAF-throttled passive
 // listener; values ease back to defaults when the pointer leaves.
-// Safe no-op when the font lacks the axes or the pointer is coarse.
+// Safe no-op when the pointer is coarse or motion is reduced.
 export function usePointerAxis(elRef) {
-  const stateRef = useRef({ raf: 0, target: null, current: null });
-
   useEffect(() => {
     const el = elRef.current;
     if (!el) return;
     if (!window.matchMedia(FINE_POINTER).matches) return;
 
-    const REST = { wght: 560, opsz: 144, soft: 0 };
-    const RANGE = { wght: 90, opsz: 40, soft: 45 };
+    const s = { target: null, current: null, raf: 0 };
 
     const setVars = (v) => {
       el.style.setProperty('--fx-wght', v.wght.toFixed(1));
@@ -25,7 +25,6 @@ export function usePointerAxis(elRef) {
     };
 
     const tick = () => {
-      const s = stateRef.current;
       if (!s.target || !s.current) {
         s.raf = 0;
         return;
@@ -41,38 +40,30 @@ export function usePointerAxis(elRef) {
       const settled = ['wght', 'opsz', 'soft'].every(
         (key) => s.current[key] === s.target[key]
       );
-      if (!settled) {
-        s.raf = requestAnimationFrame(tick);
-      } else {
-        s.raf = 0;
-      }
+      s.raf = settled ? 0 : requestAnimationFrame(tick);
     };
-
-    const ensureLoop = () => {
-      if (!stateRef.current.raf) {
-        stateRef.current.raf = requestAnimationFrame(tick);
-      }
+    const kick = () => {
+      if (!s.raf) s.raf = requestAnimationFrame(tick);
     };
 
     const onMove = (e) => {
       const rect = el.getBoundingClientRect();
       const t = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
-      // subtle: weight rises toward the right, opsz dips slightly, SOFT stays low
-      stateRef.current.target = {
+      s.target = {
         wght: REST.wght + (t - 0.5) * RANGE.wght,
-        opsz: REST.opsz - Math.abs(t - 0.5) * RANGE.opsz * 0.6,
-        soft: REST.soft + t * RANGE.soft * 0.5
+        opsz: REST.opsz - Math.abs(t - 0.5) * RANGE.opsz,
+        soft: REST.soft + t * RANGE.soft
       };
-      if (!stateRef.current.current) {
-        stateRef.current.current = { ...REST };
-        setVars(stateRef.current.current);
+      if (!s.current) {
+        s.current = { ...REST };
+        setVars(s.current);
       }
-      ensureLoop();
+      kick();
     };
 
     const onLeave = () => {
-      stateRef.current.target = REST;
-      if (stateRef.current.current) ensureLoop();
+      s.target = { ...REST };
+      if (s.current) kick();
     };
 
     el.addEventListener('pointermove', onMove, { passive: true });
@@ -80,7 +71,7 @@ export function usePointerAxis(elRef) {
     return () => {
       el.removeEventListener('pointermove', onMove);
       el.removeEventListener('pointerleave', onLeave);
-      if (stateRef.current.raf) cancelAnimationFrame(stateRef.current.raf);
+      if (s.raf) cancelAnimationFrame(s.raf);
       el.style.removeProperty('--fx-wght');
       el.style.removeProperty('--fx-opsz');
       el.style.removeProperty('--fx-soft');

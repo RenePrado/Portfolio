@@ -19,9 +19,14 @@ export const profile = {
   portrait: {
     src: '/assets/portrait/portrait-800.jpg',
     srcSet: '/assets/portrait/portrait-480.jpg 480w, /assets/portrait/portrait-800.jpg 800w',
+    avifSrcSet:
+      '/assets/portrait/portrait-480.avif 480w, /assets/portrait/portrait-800.avif 800w',
+    webpSrcSet:
+      '/assets/portrait/portrait-480.webp 480w, /assets/portrait/portrait-800.webp 800w',
     sizes: '(min-width: 1024px) 280px, 40vw',
     width: 800,
     height: 800,
-    alt: 'Portrait of Rene Angelo Prado'
+    alt: 'Portrait of Rene Angelo Prado',
+    fetchPriority: 'high'
   }
 };
