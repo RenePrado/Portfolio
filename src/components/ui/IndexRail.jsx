@@ -4,7 +4,7 @@ export const SECTIONS = [
   { id: 'top', index: '01', label: 'Top' },
   { id: 'about', index: '02', label: 'About' },
   { id: 'projects', index: '03', label: 'Projects' },
-  { id: 'journey', index: '04', label: 'Journey' },
+  { id: 'journey', index: '04', label: 'Experience and education' },
   { id: 'stack', index: '05', label: 'Stack' },
   { id: 'contact', index: '06', label: 'Contact' }
 ];

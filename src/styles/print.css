@@ -209,12 +209,18 @@
     font-size: 10pt;
   }
   .journey__org {
-    font-size: 9pt;
-  }
-  .journey__kind {
     display: inline;
-    font-size: 7.5pt;
-    margin-right: 1.5mm;
+    font-size: 9pt;
+    color: #44403a;
+    margin-left: 1.5mm;
+  }
+  .journey__meta {
+    display: inline;
+    font-size: 8pt;
+    color: #44403a;
+  }
+  .journey__meta::before {
+    content: ', ';
   }
   .journey__bullets {
     margin-top: 0.5mm;

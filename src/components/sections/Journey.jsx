@@ -1,19 +1,13 @@
 import { experience, education } from '../../data/journey';
 
-function Entry({ item, kind }) {
+function Entry({ item }) {
   return (
     <li className="journey__entry">
       <p className="mono journey__dates">{item.dates}</p>
       <div className="journey__body">
-        <span className="journey__kind">{kind}</span>
-        <h3 className="journey__role">
-          {item.role}
-          <span className="journey__org">
-            {' '}
-            — {item.org}
-            {item.meta ? `, ${item.meta}` : ''}
-          </span>
-        </h3>
+        <h3 className="journey__role">{item.role}</h3>
+        <p className="journey__org">{item.org}</p>
+        {item.meta ? <p className="mono journey__meta">{item.meta}</p> : null}
         {item.bullets.length > 0 && (
           <ul className="journey__bullets">
             {item.bullets.map((b) => (
@@ -32,7 +26,7 @@ export default function Journey() {
       <div className="grid12">
         <div className="section-head" data-spec="--step-4 cols 1-12">
           <h2 id="journey-title" className="section-title">
-            Journey
+            Experience and education
           </h2>
           <span className="section-head__rule" aria-hidden="true" />
         </div>
@@ -41,10 +35,10 @@ export default function Journey() {
         <span className="journey__rail" aria-hidden="true" />
         <ol className="journey__list">
           {experience.map((e) => (
-            <Entry key={e.index} item={e} kind="Experience" />
+            <Entry key={e.index} item={e} />
           ))}
           {education.map((e) => (
-            <Entry key={e.index} item={e} kind="Education" />
+            <Entry key={e.index} item={e} />
           ))}
         </ol>
       </div>

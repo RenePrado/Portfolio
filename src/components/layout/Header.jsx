@@ -7,7 +7,7 @@ import { profile } from '../../data/profile';
 const NAV = [
   ['About', '#about'],
   ['Projects', '#projects'],
-  ['Journey', '#journey'],
+  ['Experience', '#journey'],
   ['Stack', '#stack'],
   ['Contact', '#contact']
 ];
