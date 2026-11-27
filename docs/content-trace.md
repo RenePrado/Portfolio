@@ -11,7 +11,7 @@ Anything not mappable is listed in `OPEN_ITEMS.md`.
 | Name "Rene Angelo Prado" | Header: "Rene Angelo Prado" |
 | "Quezon City, Philippines" | Header + Education location |
 | Email `reneangeloprado50@gmail.com` | Header |
-| Phone `tel:+639763688999` | Header "+63 976 368 8999" |
+| Phone `tel:+639763688999` | Header "+63 976 368 8999" — revealed via "Show phone number" button, never plain text |
 | GitHub `github.com/RenePrado` | Header |
 | LinkedIn `linkedin.com/in/reneprado50/` | **Not on résumé** — kept from old site, flagged in OPEN_ITEMS |
 | Hero label "Front-End Developer" | **Not on résumé** — kept from old site, flagged in OPEN_ITEMS |

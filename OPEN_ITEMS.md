@@ -5,10 +5,13 @@ fact; placeholders are clearly marked in the UI or omitted entirely.
 
 ## Placeholders in the UI
 
-- **Project screenshots** — all three project rows show a marked
-  "screenshot pending" plate. To swap in real images, set `image` (and
-  optionally `imageSrcSet`/`avifSrcSet`/`webpSrcSet`) in
-  `src/data/projects.js` — a one-line change per project.
+- **Project screenshots** — all three projects have `image: null`, so
+  production renders no figure at all (the hover preview plate and the
+  touch-device figure only appear once an image is set; a marked
+  placeholder is rendered for layout testing under `npm run dev` only).
+  To swap in real images, set `image` (and optionally
+  `imageSrcSet`/`avifSrcSet`/`webpSrcSet`) in `src/data/projects.js` —
+  a one-line change per project.
 - **About section** — the "development philosophy / what makes my approach
   different" copy is a dashed placeholder box. It needs the owner's own
   words; it was deliberately not written for him.
@@ -64,6 +67,7 @@ Removed because they appear nowhere in the new résumé:
 
 ## Phone display decision
 
-The phone number is shown masked (`+63 976 ••• ••99`) so it isn't printed as
-plain scrapable text; the `tel:+639763688999` link still works and carries an
-aria-label with the full number.
+The phone number is never rendered as plain text. Contact shows a "Show
+phone number" button; on activation the full number appears as a working
+`tel:+639763688999` link and receives focus. Nothing partial is ever
+displayed.
