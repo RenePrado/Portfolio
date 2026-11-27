@@ -4,13 +4,13 @@ export const SECTIONS = [
   { id: 'top', index: '01', label: 'Top' },
   { id: 'about', index: '02', label: 'About' },
   { id: 'projects', index: '03', label: 'Projects' },
-  { id: 'journey', index: '04', label: 'Experience and education' },
+  { id: 'journey', index: '04', label: 'Experience' },
   { id: 'stack', index: '05', label: 'Stack' },
   { id: 'contact', index: '06', label: 'Contact' }
 ];
 
-// Sticky left index rail — desktop only (hidden below 85rem where there is
-// no margin room; sections carry inline indices at every size).
+// Sticky left index rail — visible at ≥64rem (1024px) where the header gives
+// up inline section links. Below that the header nav / mobile menu covers it.
 export default function IndexRail() {
   const [active, setActive] = useState(SECTIONS[0].id);
 

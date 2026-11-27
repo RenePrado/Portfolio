@@ -125,13 +125,17 @@
   gap: var(--space-1);
 }
 
-/* Section links live in the header only while the index rail is absent
-   (768px–<85rem). At ≥85rem the rail is the single section navigation;
-   below 768px the mobile menu takes over. */
-@media (min-width: 768px) and (max-width: 84.99rem) {
+/* One navigation per breakpoint:
+   - <768px: mobile menu (hamburger) + theme toggle only.
+   - 768–1023px: inline section links + Grid + theme toggles.
+   - ≥1024px (64rem): the index rail is the only section navigation;
+     the header keeps name, Grid toggle and theme toggle. */
+@media (min-width: 768px) and (max-width: 63.99rem) {
   .site-nav {
     display: flex;
   }
+}
+@media (min-width: 768px) {
   .site-header__actions-desktop {
     display: flex;
   }
@@ -372,6 +376,9 @@
   gap: var(--space-3);
   border-bottom: 1px solid var(--line);
   padding-block: var(--space-6);
+}
+.project-row:last-child {
+  border-bottom: none;
 }
 .project-row__index {
   font-family: var(--font-display);
@@ -833,12 +840,23 @@
 .index-rail {
   display: none;
 }
-@media (min-width: 85rem) {
+/* ≥1024px the rail is the section navigation. It sits in the page's left
+   padding zone; main/header/footer/overlay pad left by rail width + gap so
+   every edge stays aligned. */
+@media (min-width: 64rem) {
+  main.page,
+  .site-header__inner,
+  .site-footer__inner,
+  .inspect-overlay .page {
+    padding-left: calc(var(--gutter) + var(--rail-w) + var(--space-6));
+  }
+}
+@media (min-width: 64rem) {
   .index-rail {
     display: block;
     position: fixed;
     z-index: 40;
-    left: calc(50% - var(--page-max) / 2 - var(--rail-w) - var(--space-6));
+    left: calc(max(0px, 50% - var(--page-max) / 2) + var(--gutter));
     top: 50%;
     transform: translateY(-50%);
     width: var(--rail-w);

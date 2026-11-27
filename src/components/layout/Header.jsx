@@ -90,6 +90,16 @@ export default function Header({ theme, onToggleTheme, inspect, onToggleInspect 
               {label}
             </a>
           ))}
+          <a
+            href={profile.resumePath}
+            download={profile.resumeFileName}
+            className="mobile-menu__link"
+            onClick={() => setOpen(false)}
+            tabIndex={open ? 0 : -1}
+          >
+            <span className="mono mobile-menu__num">07</span>
+            Download résumé
+          </a>
         </nav>
       </div>
     </header>

@@ -20,6 +20,7 @@ export function useInspect() {
   useEffect(() => {
     const onKey = (e) => {
       if (e.key.toLowerCase() !== 'g' || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (!window.matchMedia('(min-width: 768px)').matches) return;
       const t = e.target;
       if (
         t instanceof HTMLElement &&
