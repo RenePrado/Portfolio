@@ -23,6 +23,11 @@ await build({
   jsx: 'automatic',
   outfile,
   external: ['react', 'react-dom', 'react-dom/*', 'react/jsx-runtime'],
+  define: {
+    'import.meta.env.DEV': 'false',
+    'import.meta.env.PROD': 'true',
+    'import.meta.env.MODE': '"production"'
+  },
   logLevel: 'silent'
 });
 

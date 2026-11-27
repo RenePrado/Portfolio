@@ -24,7 +24,11 @@ export default function ProjectRow({ project }) {
           <TagList items={project.tech} />
         </div>
 
-        <p className="project-row__contribution">{project.contribution}</p>
+        <ul className="project-row__bullets">
+          {project.bullets.map((b) => (
+            <li key={b}>{b}</li>
+          ))}
+        </ul>
 
         <div className="project-row__links">
           {project.links.map((l) => (

@@ -25,15 +25,16 @@ fact; placeholders are clearly marked in the UI or omitted entirely.
 - No links at all are shown for the freelance funnel role — none exist to
   confirm.
 
-## Unverified against the résumé (kept, flagged)
+## Unverified against the résumé (kept, flagged — awaiting owner)
 
+- **Fish Freshness Detector** tag `Vercel` — inferred from the
+  `*.vercel.app` domain only. **Unconfirmed, awaiting owner.**
 - **Facility Reservation Management** tech tags `React` + `Supabase` —
   carried over from the old site copy ("built with React.js and Supabase");
-  the résumé does not name them.
-- **Fish Freshness Detector** tag `Vercel` — inferred from the
-  `*.vercel.app` domain only.
-- **Curriculum Comparison System** tag `Python` — inferred from the
-  "pretrained sentence-embedding model" bullet.
+  the résumé does not name them. **Unconfirmed, awaiting owner.**
+- **Curriculum Comparison System** — the inferred `Python` tag was removed
+  after review; the project now shows no tech tags. Confirm whether any
+  tags should be restored.
 - **LinkedIn** (`linkedin.com/in/reneprado50/`) — kept from the old site;
   the new résumé does not list it. Confirm it is still wanted.
 - Hero label "Front-End Developer" — kept from the old site; confirm it
@@ -58,7 +59,8 @@ Removed because they appear nowhere in the new résumé:
 
 - **Canonical URL / OG URL / OG image URL / Twitter image URL** — currently
   `https://example.com/` placeholders in `index.html`. Replace with the
-  production domain when known (search for `TODO(OPEN_ITEMS)`).
+  production domain when known (search for `TODO: replace with the
+  production domain` in `index.html`).
 
 ## Phone display decision
 

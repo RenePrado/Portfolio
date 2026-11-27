@@ -18,38 +18,41 @@ Anything not mappable is listed in `OPEN_ITEMS.md`.
 | Hero intro paragraph | **Not on résumé** — kept verbatim per task spec §5, flagged |
 | Portrait caption "Fig. 01 — …, Quezon City" | Location on résumé; photo itself unverified asset |
 
-## About (`src/components/sections/About.jsx`)
+## About (`src/data/about.js`)
+
+Copy supplied verbatim by the owner in the review task; every claim maps
+to the résumé:
 
 | Claim | Résumé source |
 |---|---|
-| "front-end developer and 2026 Computer Science graduate" | Education: BS CS, 08/2022–06/2026 |
-| "based in Quezon City, Philippines" | Header / Education location |
-| "Vue.js and Vuetify — translating Figma designs into responsive, consistently styled pages" | Internship bullet: "Translated Figma designs into 9 responsive, consistently styled UI pages using Vue and Vuetify" |
-| "custom HTML, CSS, and JavaScript for e-commerce funnels" | Freelance bullet: "custom HTML, CSS, and JavaScript" |
-| "skills also include React and TypeScript" | Skills: Frontend list |
-| "30+ Funnelish funnels for 3 clients across 5 markets" | Freelance bullet 1 (verbatim numbers) |
-| "frontend internship at Simplevia Technologies Inc. resolving 14 bugs across API handling, data bindings, and event handlers" | Internship bullet 1 (verbatim) |
-| Owner-words placeholder | Marked `[ Owner note needed … ]` — not invented |
+| "front-end developer based in Quezon City" | Header location; role per spec |
+| "Bachelor of Science in Computer Science from New Era University in 2026" | EDUCATION entry (08/2022–06/2026) |
+| "frontend developer intern at Simplevia Technologies … Vue and Vuetify from Figma designs" | EXPERIENCE entry 2 + bullet 2 |
+| "freelance e-commerce funnel developer … Funnelish funnels in custom HTML, CSS and JavaScript" | EXPERIENCE entry 1 + bullet 1 |
+| "fish freshness classifier, facility reservation system and curriculum comparison tool" | PROJECTS entries 1–3 |
+| Owner-words placeholder | Rendered only when `import.meta.env.DEV`; not in production builds |
 
 ## Projects (`src/data/projects.js`)
 
 | Claim | Résumé source |
 |---|---|
 | Fish Freshness Detector, Jan–May 2026 | PROJECTS entry 01/2026–05/2026 |
-| "classifies fish freshness across four stages from captured or uploaded eye and gill photos" | Bullet 1 (verbatim) |
-| "annotated images and a color-coded verdict" detail → folded into objective/contribution | Bullets 1–2 |
-| "Labeled fish eye and gill images into four freshness classes to build the training dataset" | Bullet 3 (verbatim, contribution column) |
-| Tech tag `Vercel` | **Inferred** from `*.vercel.app` — flagged in OPEN_ITEMS |
+| "classifies fish freshness across four stages from captured or uploaded eye and gill photos" | Bullet 1 (verbatim, objective) |
+| "annotated images and a color-coded verdict with consumption advice for each stage" | Bullet 2 (verbatim, restored after review) |
+| "Labeled fish eye and gill images into four freshness classes to build the training dataset" | Bullet 3 (verbatim) |
+| Tech tag `Vercel` | **Inferred** from `*.vercel.app` — unconfirmed, OPEN_ITEMS |
 | Live link `grouperfish-freshness-detector.vercel.app` | Confirmed live URL per task spec |
 | Facility Reservation Management, Mar–May 2025 | PROJECTS entry 03/2025–05/2025 |
-| "six recreational facilities, separate user and admin modules" | Bullet 1 (verbatim) |
-| "Time-slot booking with duplicate-slot prevention, reservation history, and QR code generation; admin dashboard with per-facility charts and monthly trends" | Bullets 2–3 (verbatim) |
-| Tech tags `React`, `Supabase` | **Unverified** — old site copy, flagged in OPEN_ITEMS |
+| "six recreational facilities, separate user and admin modules" | Bullet 1 (verbatim, objective) |
+| "Time-slot booking with duplicate-slot prevention, reservation history, and QR code generation" | Bullet 2 (verbatim) |
+| "Admin dashboard with per-facility reservation charts and monthly trends" | Bullet 3 (verbatim) |
+| Tech tags `React`, `Supabase` | **Unverified** — old site copy, OPEN_ITEMS |
 | No links for this project | No confirmed URLs — omitted per spec |
 | Curriculum Comparison System, Feb–Mar 2025 | PROJECTS entry 02/2025–03/2025 |
-| "compares a student's curriculum PDF against the target program's official curriculum" | Bullet 1 (verbatim) |
-| "pretrained sentence-embedding model … transferable, possibly transferable, or not … filterable results … one-click PDF export" | Bullets 2–3 (verbatim) |
-| Tech tag `Python` | **Inferred** from embedding-model bullet — flagged in OPEN_ITEMS |
+| "compares a student's curriculum PDF against the target program's official curriculum" | Bullet 1 (verbatim, objective) |
+| "pretrained sentence-embedding model … transferable, possibly transferable, or not" | Bullet 2 (verbatim) |
+| "filterable results … total transferable units … one-click PDF export" | Bullet 3 (verbatim) |
+| No tech tags | Inferred `Python` tag removed after review — OPEN_ITEMS |
 | No links for this project | No confirmed URLs — omitted per spec |
 
 ## Journey (`src/data/journey.js`)
