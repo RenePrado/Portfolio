@@ -373,23 +373,47 @@
   transform: translateY(-0.3em);
 }
 
-/* ---------- About ---------- */
-.about__col {
-  grid-column: 1 / -1;
+/* ---------- Profile + Toolkit ---------- */
+.profile {
+  margin-top: var(--space-8);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8) var(--gutter);
 }
-.about__body {
-  margin-top: var(--space-6);
-  max-width: 62ch;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+.profile__text {
   font-size: var(--step-1);
   line-height: 1.7;
   color: var(--muted);
+  max-width: 62ch;
+}
+.profile__toolkit-title {
+  font-size: var(--step-0);
+  color: var(--muted);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line);
+}
+.toolkit__group {
+  margin-top: var(--space-5);
+}
+.toolkit__label {
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+.toolkit__items {
+  margin-top: var(--space-2);
+  font-size: var(--step-1);
+  line-height: 1.6;
+  color: var(--ink);
 }
 @media (min-width: 1024px) {
-  .about__col {
-    grid-column: 4 / 11;
+  .profile {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .profile__about {
+    grid-column: 1 / 7;
+  }
+  .profile__toolkit {
+    grid-column: 8 / 13;
   }
 }
 
@@ -664,49 +688,6 @@
   }
 }
 
-/* ---------- Stack ---------- */
-.stack {
-  margin-top: var(--space-7);
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-6) var(--gutter);
-}
-.stack__label {
-  font-size: var(--step-0);
-  color: var(--muted);
-  padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--line);
-}
-.stack__list {
-  list-style: none;
-  margin: var(--space-4) 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  font-size: var(--step-0);
-  color: var(--ink);
-}
-.stack__col {
-  transition: opacity var(--dur-2) var(--ease-out);
-}
-@supports selector(:has(*)) {
-  .stack:has(.stack__col:hover) .stack__col:not(:hover),
-  .stack:has(.stack__col:focus-within) .stack__col:not(:focus-within) {
-    opacity: 0.35;
-  }
-}
-@media (min-width: 1024px) {
-  /* Four columns on the same 12-track grid as everything else. */
-  .stack {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--gutter);
-  }
-  .stack__col {
-    grid-column: span 3;
-  }
-}
-
 /* ---------- Contact ---------- */
 .contact {
   margin-top: var(--space-8);
@@ -824,12 +805,6 @@
   gap: var(--space-4);
 }
 .site-footer__copy {
-  font-size: var(--step-0);
-  color: var(--muted);
-}
-
-/* ---------- Tag list ---------- */
-.tag-list {
   font-size: var(--step-0);
   color: var(--muted);
 }

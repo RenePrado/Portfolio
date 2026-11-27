@@ -1,6 +1,7 @@
-// About — first person, résumé facts only. TODO(owner): add one sentence
-// on development philosophy and approach, in your own words.
+// About — one short factual paragraph (<= ~60 words). TODO(owner): add one
+// sentence on your approach to front-end work, in your own words. Do not
+// render a placeholder for it.
 
 export const aboutParagraphs = [
-  "My projects include a fish freshness classifier, a facility reservation system and a curriculum comparison tool."
+  'Based in Quezon City, Philippines. Graduated with a B.S. in Computer Science from New Era University in 2026. My projects include a fish freshness classifier, a facility reservation system and a curriculum comparison tool.'
 ];

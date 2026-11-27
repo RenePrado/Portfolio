@@ -4,10 +4,9 @@ import SkipLink from './components/layout/SkipLink';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Hero from './components/sections/Hero';
-import About from './components/sections/About';
 import Projects from './components/sections/Projects';
 import Journey from './components/sections/Journey';
-import TechStack from './components/sections/TechStack';
+import Profile from './components/sections/Profile';
 import Contact from './components/sections/Contact';
 
 export default function App() {
@@ -19,10 +18,9 @@ export default function App() {
       <Header theme={theme} onToggleTheme={toggleTheme} />
       <main id="content" className="page">
         <Hero />
-        <About />
         <Projects />
         <Journey />
-        <TechStack />
+        <Profile />
         <Contact />
       </main>
       <Footer />

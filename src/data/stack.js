@@ -8,7 +8,7 @@ export const stackGroups = [
     items: ['Vue.js', 'Vuetify', 'React', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'Tailwind CSS']
   },
   {
-    label: 'Backend / Database',
+    label: 'Backend & data',
     items: ['Python', 'Supabase', 'SQL', 'PHP']
   },
   {

@@ -35,7 +35,8 @@ export const profile = {
     sizes: '(min-width: 1024px) 300px, (min-width: 640px) 220px, 96px',
     width: 300,
     height: 375,
-    alt: 'Portrait of Rene Angelo Prado',
-    fetchPriority: 'high'
+    alt: 'Portrait of Rene Angelo Prado'
+    // fetch priority is set via the <link rel="preload"> in index.html —
+    // React 18 has no fetchPriority JSX prop.
   }
 };

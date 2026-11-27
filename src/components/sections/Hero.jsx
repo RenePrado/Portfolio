@@ -32,7 +32,6 @@ export default function Hero() {
             width={profile.portrait.width}
             height={profile.portrait.height}
             alt={profile.portrait.alt}
-            fetchpriority={profile.portrait.fetchPriority}
             decoding="async"
           />
         </figure>
