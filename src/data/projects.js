@@ -1,62 +1,59 @@
-// Project index — newest first. `image: null` renders nothing in production;
-// set `image` (and optional srcset fields) to a path under /assets/ to swap in
-// a real screenshot — a one-line change per project.
-// `links` must only contain confirmed URLs; omit unknown links entirely.
-// `bullets` are the remaining résumé bullets verbatim (the `objective` is the
-// first bullet, kept as the one-line summary).
+// Selected work — newest first. Project 01 is featured (7-col media + 5-col
+// text); the rest render as a side-by-side pair.
+//
+// To add a screenshot: drop the file at /public/projects/<id>.webp and set
+// `image: '/projects/<id>.webp'` (16:10). Optional `mobileImage` renders a
+// small inset at the bottom-right of the frame.
+// `links`: set `live` / `repo` URLs that exist; `private: true` shows a
+// non-link "Private repo" note. Never render dead links.
+// TODO(owner): project 01's real stack — "Vercel" is a host, kept as a
+// hosting note, not a tech tag. Projects 02/03 tech tags unconfirmed.
 
 export const projects = [
   {
     id: 'fish-freshness-detector',
-    index: '01',
     title: 'Fish Freshness Detector',
-    dates: 'Jan 2026 – May 2026',
-    objective:
+    description:
       'Responsive web interface that classifies fish freshness across four stages from captured or uploaded eye and gill photos.',
-    bullets: [
-      'Presents the analysis through annotated images and a color-coded verdict with consumption advice for each stage.',
-      'Labeled fish eye and gill images into four freshness classes to build the training dataset.'
-    ],
-    tech: ['Vercel'], // inferred from *.vercel.app domain — unconfirmed, see OPEN_ITEMS.md
-    links: [
-      {
-        label: 'Live',
-        href: 'https://grouperfish-freshness-detector.vercel.app/'
-      }
-    ],
+    result:
+      'Presents annotated images with a color-coded verdict and consumption advice; also labeled the four-class eye and gill training set.',
+    tech: [], // TODO(owner): real stack
+    hosting: 'Vercel',
+    links: {
+      live: 'https://grouperfish-freshness-detector.vercel.app/',
+      repo: null,
+      private: false
+    },
     image: null,
-    figLabel: 'Fig. 01, Fish Freshness Detector'
+    mobileImage: null,
+    figLabel: 'Fig. 01: Freshness verdict'
   },
   {
     id: 'facility-reservation',
-    index: '02',
     title: 'Facility Reservation Management',
-    dates: 'Mar 2025 – May 2025',
-    objective:
+    description:
       'Reservation system for six recreational facilities, with separate user and admin modules.',
-    bullets: [
-      'Time-slot booking with duplicate-slot prevention, reservation history, and QR code generation.',
-      'Admin dashboard with per-facility reservation charts and monthly trends.'
-    ],
-    tech: ['React', 'Supabase'], // kept from previous site copy — unconfirmed, see OPEN_ITEMS.md
-    links: [],
+    result:
+      'Time-slot booking with duplicate-slot prevention, reservation history and QR codes; admin dashboard with per-facility charts and monthly trends.',
+    tech: ['React', 'Supabase'], // unconfirmed — see OPEN_ITEMS.md
+    hosting: null,
+    links: { live: null, repo: null, private: false },
     image: null,
-    figLabel: 'Fig. 02, Facility Reservation Management'
+    mobileImage: null,
+    figLabel: 'Fig. 02: Admin dashboard'
   },
   {
     id: 'curriculum-comparison',
-    index: '03',
     title: 'Curriculum Comparison System',
-    dates: 'Feb 2025 – Mar 2025',
-    objective:
+    description:
       "Web-based system that compares a student's curriculum PDF against the target program's official curriculum.",
-    bullets: [
-      'Matches courses with a pretrained sentence-embedding model and classifies each as transferable, possibly transferable, or not.',
-      'Filterable results showing total transferable units, with one-click PDF export.'
-    ],
-    tech: [],
-    links: [],
+    result:
+      'Matches courses with a pretrained sentence-embedding model, classifies each as transferable, possibly transferable, or not, and exports filterable transferable-unit reports to PDF.',
+    tech: [], // TODO(owner): real stack
+    hosting: null,
+    links: { live: null, repo: null, private: false },
     image: null,
-    figLabel: 'Fig. 03, Curriculum Comparison System'
+    mobileImage: null,
+    figLabel: 'Fig. 03: Transferable-unit report'
   }
 ];

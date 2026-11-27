@@ -1,58 +1,120 @@
 import { projects } from '../../data/projects';
-import TagList from '../ui/TagList';
-import { ExternalIcon } from '../ui/Icons';
+import { ArrowUpRightIcon } from '../ui/Icons';
 
-// Temporary minimal project list until the §7 card layout lands.
-export default function Projects() {
+function ProjectMedia({ project }) {
   return (
-    <section id="projects" className="section" aria-labelledby="projects-title">
+    <figure className="project__figure">
+      <div className="project__media">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={`${project.title} screenshot`}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <span className="project__pending" aria-hidden="true" />
+        )}
+        {project.mobileImage && (
+          <img
+            className="project__media-mobile"
+            src={project.mobileImage}
+            alt={`${project.title} mobile screenshot`}
+            loading="lazy"
+            decoding="async"
+          />
+        )}
+        {!project.image && import.meta.env.DEV && (
+          <span className="mono project__pending-label">Screenshot coming</span>
+        )}
+      </div>
+      <figcaption className="mono project__caption">{project.figLabel}</figcaption>
+    </figure>
+  );
+}
+
+function ProjectLinks({ links }) {
+  const items = [];
+  if (links.live) items.push({ label: 'Live ↗', href: links.live });
+  if (links.repo) items.push({ label: 'Code ↗', href: links.repo });
+  if (items.length === 0 && links.private) {
+    return <span className="mono project__private">Private repo</span>;
+  }
+  if (items.length === 0) return null;
+  return (
+    <div className="project__links">
+      {items.map((l) => (
+        <a
+          key={l.href}
+          href={l.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="project__link"
+        >
+          {l.label}
+          <ArrowUpRightIcon className="project__link-icon" />
+        </a>
+      ))}
+      {links.private && <span className="mono project__private">Private repo</span>}
+    </div>
+  );
+}
+
+function ProjectCard({ project, featured = false }) {
+  const primaryHref = project.links.live || project.links.repo || null;
+  return (
+    <article className={`project${featured ? ' project--featured' : ''}`}>
+      <ProjectMedia project={project} />
+      <div className="project__body">
+        <h3 className="project__title">
+          {primaryHref ? (
+            <a
+              className="project__title-link u-draw"
+              href={primaryHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {project.title}
+              <ArrowUpRightIcon className="project__link-icon" />
+            </a>
+          ) : (
+            project.title
+          )}
+        </h3>
+        <p className="project__desc">{project.description}</p>
+        <p className="project__result">{project.result}</p>
+        {(project.tech.length > 0 || project.hosting) && (
+          <p className="project__tags mono">
+            {project.tech.join(' · ')}
+            {project.tech.length > 0 && project.hosting ? ' · ' : ''}
+            {project.hosting && <span className="project__host">Host · {project.hosting}</span>}
+          </p>
+        )}
+        <ProjectLinks links={project.links} />
+      </div>
+    </article>
+  );
+}
+
+export default function Projects() {
+  const [featured, ...rest] = projects;
+  return (
+    <section id="work" className="section" aria-labelledby="work-title">
       <div className="grid12">
         <div className="section-head">
-          <h2 id="projects-title" className="section-title">
-            Projects
+          <h2 id="work-title" className="section-title">
+            Selected work
           </h2>
           <span className="section-head__rule" aria-hidden="true" />
         </div>
       </div>
-      <div className="projects-index" role="list" aria-label="Projects">
-        {projects.map((p) => (
-          <article className="project-row" role="listitem" key={p.id}>
-            <div className="project-row__head">
-              <h3 className="project-row__title">{p.title}</h3>
-              <p className="mono project-row__dates">{p.dates}</p>
-            </div>
-            <div className="project-row__detail">
-              <p className="project-row__objective">{p.objective}</p>
-              {p.bullets?.length > 0 && (
-                <ul className="project-row__bullets">
-                  {p.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              )}
-              {p.tech?.length > 0 && (
-                <p className="project-row__tech">
-                  <TagList items={p.tech} />
-                </p>
-              )}
-              {p.links.length > 0 && (
-                <div className="project-row__links">
-                  {p.links.map((l) => (
-                    <a
-                      key={l.href}
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-row__link u-draw"
-                    >
-                      {l.label} <ExternalIcon />
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          </article>
-        ))}
+      <div className="work">
+        <ProjectCard project={featured} featured />
+        <div className="work__pair">
+          {rest.map((p) => (
+            <ProjectCard key={p.id} project={p} />
+          ))}
+        </div>
       </div>
     </section>
   );
