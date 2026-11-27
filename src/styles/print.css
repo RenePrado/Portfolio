@@ -1,19 +1,13 @@
-/* Print — compact one-page résumé-style output. */
+/* Print — compact résumé-style output for the dark-first layout. */
 
 @media print {
-  :root {
+  :root,
+  :root[data-theme='light'] {
     --paper: #ffffff;
     --surface: #ffffff;
     --ink: #1c1814;
     --muted: #44403a;
-    --line: #d6d0c4;
-  }
-
-  :root[data-theme='dark'] {
-    --paper: #ffffff;
-    --surface: #ffffff;
-    --ink: #1c1814;
-    --muted: #44403a;
+    --faint: #66605a;
     --line: #d6d0c4;
     --accent: #9c4f16;
   }
@@ -29,15 +23,17 @@
     line-height: 1.12;
   }
 
-  .no-print,
   .skip-link,
-  .mobile-menu,
+  .site-nav,
   .site-header__actions,
+  .mobile-sheet,
   .copy-email__btn,
   .hero__figure,
   .hero__ctas,
-  .hero__meta,
-  .project-row__links,
+  .hero__availability,
+  .project__media,
+  .project__pending-label,
+  .project__links,
   .contact__reveal {
     display: none !important;
   }
@@ -45,52 +41,50 @@
   header.site-header {
     position: static;
     border-bottom: 1px solid #d6d0c4;
-    padding-block: 1mm;
-  }
-  .site-header__inner {
-    height: auto;
-  }
-  .site-nav {
-    display: none !important;
   }
 
   main section {
     padding-block: 0.4mm !important;
-    border-top: none;
     break-inside: avoid;
   }
 
-  .grid12 {
+  .grid12,
+  .profile,
+  .work__pair {
     display: block;
   }
 
+  /* Hero */
   .hero {
     padding-block: 1mm 1.5mm !important;
+    min-height: 0;
+  }
+  .hero__grid {
+    display: block;
   }
   .hero__name {
     font-size: 14pt;
     margin-top: 0.5mm;
   }
-  .hero__role {
-    font-size: 8pt;
+  .hero__line--indent {
+    padding-left: 0;
   }
-  .hero__intro {
+  .hero__eyebrow {
+    font-size: 7.5pt;
+    color: #44403a;
+  }
+  .hero__lead {
     font-size: 8pt;
     margin-top: 1mm;
     max-width: none;
+    color: #44403a;
   }
-  .hero__ctas {
-    margin-top: 2mm;
-  }
-  .hero__ctas,
-  .hero__meta {
-    margin-top: 1.5mm;
-    font-size: 8pt;
+  .hero__resume {
+    display: none;
   }
 
   .section-head {
     padding-bottom: 0.4mm;
-    gap: 1mm;
   }
   .section-title {
     font-size: 10pt;
@@ -99,156 +93,138 @@
     display: none;
   }
 
-  .about__body {
-    margin-top: 0.6mm;
-    font-size: 7.2pt;
-    gap: 0.6mm;
+  /* Selected work */
+  .work {
+    margin-top: 1mm;
+    gap: 1.5mm;
   }
-  .about__col {
-    max-width: none;
-  }
-
-  .projects-index {
-    border-top: none;
-  }
-  .project-row {
-    display: block;
-    padding-block: 0.6mm;
+  .project {
     break-inside: avoid;
+    padding-block: 0.8mm;
   }
-  .project-row__head {
-    display: inline;
+  .project__figure {
+    display: none;
   }
-  .project-row__title {
-    display: inline;
+  .project__title {
     font-size: 10pt;
   }
-  .project-row__dates {
+  .project__title-link {
+    text-decoration: none;
+  }
+  .project__desc {
     display: inline;
-    font-size: 8pt;
-    color: #44403a;
-    margin: 0 0 0 1.5mm;
-    white-space: normal;
+    font-size: 7.8pt;
   }
-  .project-row__detail {
-    margin-top: 0.4mm;
-  }
-  .project-row__detail > * {
-    max-width: none;
-  }
-  .project-row__objective {
+  .project__result {
     display: inline;
     font-size: 7.8pt;
     color: #44403a;
   }
-  .project-row__bullets {
-    display: inline;
-    margin: 0.3mm 0 0 2.5mm;
-    padding: 0;
-    font-size: 7.8pt;
-    color: #44403a;
+  .project__result::before {
+    content: ' — ';
   }
-  .project-row__bullets li {
-    display: inline;
-    padding-left: 0;
-  }
-  .project-row__bullets li + li::before {
-    content: '; ';
-    position: static;
-    width: auto;
-    height: auto;
-    background: none;
-  }
-  .project-row__bullets li::before {
-    content: none;
-    position: static;
-  }
-  .project-row__tech {
+  .project__tags {
     display: inline;
     font-size: 7.5pt;
     color: #44403a;
-    margin: 0.4mm 0 0 1.5mm;
+    margin-left: 1.5mm;
+  }
+  .project__private {
+    font-size: 7.5pt;
+    color: #44403a;
+  }
+  .work__pair {
+    margin-top: 0.5mm;
   }
 
-
-  .journey {
-    margin-top: 1mm;
-  }
+  /* Experience */
   .journey__list {
-    gap: 0.5mm;
-    padding-left: 0;
+    margin-top: 0.5mm;
   }
   .journey__entry {
     display: block;
+    padding-block: 0.5mm;
+  }
+  .journey__entry + .journey__entry {
+    border-top: 1px solid #d6d0c4;
   }
   .journey__dates {
     display: inline;
-    font-size: 8pt;
+    font-size: 7.5pt;
     color: #44403a;
-    margin-right: 2mm;
   }
   .journey__role {
     display: inline;
-    font-size: 10pt;
-  }
-  .journey__org {
-    display: inline;
-    font-size: 9pt;
-    color: #44403a;
-    margin-left: 1.5mm;
+    font-size: 9.5pt;
   }
   .journey__meta {
     display: inline;
+    font-family: var(--font-body);
     font-size: 8pt;
     color: #44403a;
   }
   .journey__meta::before {
-    content: ', ';
+    content: ' — ';
   }
   .journey__bullets {
-    margin-top: 0.1mm;
+    margin-top: 0.2mm;
     font-size: 7pt;
     gap: 0.1mm;
     padding-left: 2mm;
+  }
+  .journey__bullets li {
+    padding-left: 0;
   }
   .journey__bullets li::before {
     content: none;
     position: static;
   }
-  .journey__bullets li + li::before {
-    content: '; ';
-    position: static;
-    width: auto;
-    height: auto;
-    background: none;
-  }
-  .journey__bullets li {
-    padding-left: 0;
+  .journey__edu {
+    margin-top: 0.8mm;
+    font-size: 7.5pt;
+    color: #44403a;
   }
 
-  .stack {
+  /* Profile + toolkit */
+  .profile {
     margin-top: 1mm;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5mm;
   }
-  .stack__col {
-    grid-column: auto;
+  .profile__text {
+    font-size: 7.8pt;
+    color: #44403a;
+    max-width: none;
   }
-  .stack__label {
+  .profile__toolkit {
+    margin-top: 1mm;
+  }
+  .profile__toolkit-title {
+    font-size: 7.5pt;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .toolkit__group {
+    margin-top: 0.6mm;
+  }
+  .toolkit__label {
+    display: inline;
     font-size: 7pt;
-    padding-bottom: 0.5mm;
+    color: #44403a;
   }
-  .stack__list {
-    margin-top: 0.4mm;
-    font-size: 7pt;
-    gap: 0.2mm;
+  .toolkit__label::after {
+    content: ': ';
+  }
+  .toolkit__items {
+    display: inline;
+    font-size: 7.5pt;
+    color: #1c1814;
   }
 
+  /* Contact */
   .contact {
     margin-top: 1mm;
   }
   .contact__email {
-    font-size: 10.5pt;
+    font-size: 11pt;
   }
   .contact__rows {
     margin-top: 1mm;
@@ -268,9 +244,11 @@
   }
   .site-footer__inner {
     flex-direction: row;
-    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 1mm 4mm;
-    align-items: baseline;
+  }
+  .site-footer__top {
+    display: none;
   }
   .site-footer__copy {
     font-size: 7.5pt;
