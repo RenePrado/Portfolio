@@ -1,7 +1,7 @@
 import { aboutParagraphs } from '../../data/about';
 
-// First person, résumé facts only. The owner's own words are a marked
-// placeholder that renders only in development builds.
+// First person, résumé facts only. TODO(owner): add one sentence on
+// development philosophy and approach, in your own words.
 export default function About() {
   return (
     <section id="about" className="section" aria-labelledby="about-title">
@@ -17,12 +17,6 @@ export default function About() {
             {aboutParagraphs.map((p) => (
               <p key={p}>{p}</p>
             ))}
-            {import.meta.env.DEV && (
-              <p className="about__placeholder mono">
-                [ Owner note needed, development philosophy and approach, in
-                your own words. See OPEN_ITEMS.md ]
-              </p>
-            )}
           </div>
         </div>
       </div>
