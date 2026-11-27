@@ -227,7 +227,7 @@
 
 /* ---------- Hero ---------- */
 .hero {
-  padding-block: clamp(3rem, 7vw, 7rem) var(--space-8);
+  padding-block: clamp(3rem, 7vw, 7rem) var(--section-pad);
 }
 .hero__grid {
   align-items: start;
@@ -646,8 +646,10 @@
   .journey__dates {
     order: 0;
     grid-column: 1 / 4;
-    text-align: right;
+    text-align: left;
     padding-top: 0.3em;
+    /* Clear the journey rail (8px in) with a consistent left edge. */
+    padding-left: var(--space-4);
   }
   .journey__body {
     grid-column: 4 / 13;

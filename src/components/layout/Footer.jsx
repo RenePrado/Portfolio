@@ -3,7 +3,8 @@ import { profile } from '../../data/profile';
 
 const ELSEWHERE = [
   { label: 'GitHub', href: profile.githubUrl },
-  { label: 'LinkedIn', href: profile.linkedinUrl }
+  { label: 'LinkedIn', href: profile.linkedinUrl },
+  { label: 'Résumé', href: profile.resumePath }
 ];
 
 export default function Footer() {
