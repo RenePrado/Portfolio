@@ -14,7 +14,7 @@ export default function Contact() {
   return (
     <section id="contact" className="section" aria-labelledby="contact-title">
       <div className="grid12">
-        <div className="section-head" data-spec="--step-4 cols 1-12">
+        <div className="section-head">
           <h2 id="contact-title" className="section-title">
             Contact
           </h2>
@@ -22,14 +22,11 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="contact" data-reveal>
+      <div className="contact">
         <p className="contact__email-wrap">
-          <a
-            className="contact__email"
-            href={`mailto:${profile.email}`}
-            data-spec="--step-5 Fraunces"
-          >
-            {profile.email}
+          <a className="contact__email" href={`mailto:${profile.email}`}>
+            {profile.email.split('@')[0]}
+            <wbr />@{profile.email.split('@')[1]}
           </a>
           <CopyEmail email={profile.email} />
         </p>
@@ -56,6 +53,18 @@ export default function Contact() {
               rel="noopener noreferrer"
             >
               <span className="contact__ext-text u-draw">{profile.linkedinLabel}</span>
+              <ExternalIcon />
+            </a>
+          </li>
+          <li>
+            <span className="contact__key">Résumé</span>
+            <a
+              className="contact__ext"
+              href={profile.resumePath}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="contact__ext-text u-draw">{profile.resumeFileName}</span>
               <ExternalIcon />
             </a>
           </li>

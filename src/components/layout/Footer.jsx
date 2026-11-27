@@ -3,7 +3,10 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="page site-footer__inner">
-        <p className="mono site-footer__copy">© {year} Rene Angelo Prado</p>
+        <p className="site-footer__copy">© {year} Rene Angelo Prado</p>
+        <a className="site-footer__top" href="#top">
+          Back to top ↑
+        </a>
       </div>
     </footer>
   );
