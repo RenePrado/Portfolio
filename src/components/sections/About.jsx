@@ -19,7 +19,7 @@ export default function About() {
             ))}
             {import.meta.env.DEV && (
               <p className="about__placeholder mono">
-                [ Owner note needed — development philosophy and approach, in
+                [ Owner note needed, development philosophy and approach, in
                 your own words. See OPEN_ITEMS.md ]
               </p>
             )}

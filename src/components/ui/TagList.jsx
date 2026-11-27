@@ -3,7 +3,7 @@ export default function TagList({ items, className = '' }) {
   if (!items?.length) return null;
   return (
     <span className={`mono tag-list ${className}`}>
-      {items.join(' · ')}
+      {items.join(', ')}
     </span>
   );
 }

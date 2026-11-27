@@ -37,7 +37,7 @@ export default function Header({ theme, onToggleTheme, inspect, onToggleInspect 
   }, [open]);
 
   return (
-    <header className="site-header" data-spec="header · sticky">
+    <header className="site-header" data-spec="header">
       <div className="page site-header__inner">
         <a href="#top" className="site-header__brand mono">
           {profile.name}

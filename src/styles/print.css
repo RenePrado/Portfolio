@@ -96,9 +96,6 @@
     padding-bottom: 1.5mm;
     gap: 2mm;
   }
-  .section-index {
-    font-size: 8pt;
-  }
   .section-title {
     font-size: 13pt;
   }
@@ -226,8 +223,15 @@
     padding-left: 3mm;
   }
   .journey__bullets li::before {
-    content: '– ';
+    content: none;
     position: static;
+  }
+  .journey__bullets li + li::before {
+    content: '; ';
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
   }
   .journey__bullets li {
     padding-left: 0;
@@ -270,7 +274,17 @@
     padding-block: 2mm;
     break-inside: avoid;
   }
-  .site-footer__line {
+  .site-footer__inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1mm 4mm;
+    align-items: baseline;
+  }
+  .site-footer__list a {
+    min-height: 0;
+    font-size: 7.5pt;
+  }
+  .site-footer__copy {
     font-size: 7.5pt;
   }
 

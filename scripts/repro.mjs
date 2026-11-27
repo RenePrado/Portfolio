@@ -62,7 +62,6 @@ const contact = await page.evaluate(() => {
     h: Math.round(li.getBoundingClientRect().height)
   }));
   const iconWrap = [...document.querySelectorAll('.contact__ext')].map((a) => {
-    const r = a.getBoundingClientRect();
     const svg = a.querySelector('svg')?.getBoundingClientRect();
     const span = a.querySelector('.contact__ext-text')?.getBoundingClientRect();
     return svg && span ? {

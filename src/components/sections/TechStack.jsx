@@ -4,8 +4,7 @@ export default function TechStack() {
   return (
     <section id="stack" className="section" aria-labelledby="stack-title">
       <div className="grid12">
-        <div className="section-head" data-spec="--step-4 · grid 1–12">
-          <p className="mono section-index">05 — Stack</p>
+        <div className="section-head" data-spec="--step-4 cols 1-12">
           <h2 id="stack-title" className="section-title">
             Stack
           </h2>

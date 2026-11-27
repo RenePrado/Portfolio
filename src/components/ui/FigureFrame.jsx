@@ -14,7 +14,7 @@ export default function FigureFrame({
   height,
   alt = '',
   caption,
-  pendingFig = 'Fig. —',
+  pendingFig = 'Fig.',
   fetchPriority,
   className = ''
 }) {

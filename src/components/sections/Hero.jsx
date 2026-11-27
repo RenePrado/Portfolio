@@ -20,7 +20,7 @@ export default function Hero() {
             className="hero__name hero-in"
             style={{ animationDelay: '40ms' }}
             ref={nameRef}
-            data-spec="--step-6 · Fraunces variable"
+            data-spec="--step-6 Fraunces variable"
           >
             {profile.name}
           </h1>
@@ -44,7 +44,6 @@ export default function Hero() {
             >
               <DownloadIcon /> Résumé
             </a>
-            <span aria-hidden="true"> · </span>
             <a
               href={profile.resumePath}
               target="_blank"
@@ -54,9 +53,6 @@ export default function Hero() {
             >
               Preview <ExternalIcon />
             </a>
-          </p>
-          <p className="mono hero__meta hero-in" style={{ animationDelay: '230ms' }}>
-            {profile.location} — {profile.email}
           </p>
         </div>
 
@@ -71,7 +67,7 @@ export default function Hero() {
             height={profile.portrait.height}
             alt={profile.portrait.alt}
             fetchPriority={profile.portrait.fetchPriority}
-            caption="Fig. 01 — Rene Angelo Prado, Quezon City"
+            caption="Fig. 01, Rene Angelo Prado, Quezon City"
             className="hero__frame"
           />
         </div>

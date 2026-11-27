@@ -30,8 +30,7 @@ export default function Journey() {
   return (
     <section id="journey" className="section" aria-labelledby="journey-title">
       <div className="grid12">
-        <div className="section-head" data-spec="--step-4 · grid 1–12">
-          <p className="mono section-index">04 — Journey</p>
+        <div className="section-head" data-spec="--step-4 cols 1-12">
           <h2 id="journey-title" className="section-title">
             Journey
           </h2>

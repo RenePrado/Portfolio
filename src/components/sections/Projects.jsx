@@ -5,8 +5,7 @@ export default function Projects() {
   return (
     <section id="projects" className="section" aria-labelledby="projects-title">
       <div className="grid12">
-        <div className="section-head" data-spec="--step-4 · grid 1–12">
-          <p className="mono section-index">03 — Projects</p>
+        <div className="section-head" data-spec="--step-4 cols 1-12">
           <h2 id="projects-title" className="section-title">
             Projects
           </h2>

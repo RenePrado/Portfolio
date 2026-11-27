@@ -99,7 +99,7 @@
     background: var(--ink);
     color: var(--paper);
     font-family: var(--font-mono);
-    font-size: var(--step--1);
+    font-size: var(--step-0);
     text-decoration: none;
     transition: top var(--dur-2) var(--ease-out);
   }
@@ -111,7 +111,7 @@
   .mono {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
   }
 
   /* Underline that draws on hover/focus — transform-based, no layout shift */
@@ -148,13 +148,5 @@
 
   .hairline-b {
     border-bottom: 1px solid var(--line);
-  }
-
-  .label-mono {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
   }
 }

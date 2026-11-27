@@ -14,7 +14,7 @@ export default function Contact() {
   return (
     <section id="contact" className="section" aria-labelledby="contact-title">
       <div className="grid12">
-        <div className="section-head" data-spec="--step-4 · grid 1–12">
+        <div className="section-head" data-spec="--step-4 cols 1-12">
           <h2 id="contact-title" className="section-title">
             Contact
           </h2>
@@ -27,7 +27,7 @@ export default function Contact() {
           <a
             className="contact__email"
             href={`mailto:${profile.email}`}
-            data-spec="--step-5 · Fraunces"
+            data-spec="--step-5 Fraunces"
           >
             {profile.email}
           </a>
