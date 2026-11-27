@@ -1,9 +1,5 @@
-import { useInspect } from './hooks/useInspect';
-import { useReveal } from './hooks/useReveal';
 import { useTheme } from './hooks/useTheme';
 import ErrorBoundary from './components/ui/ErrorBoundary';
-import InspectOverlay from './components/ui/InspectOverlay';
-import IndexRail from './components/ui/IndexRail';
 import SkipLink from './components/layout/SkipLink';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -16,19 +12,11 @@ import Contact from './components/sections/Contact';
 
 export default function App() {
   const { theme, toggle: toggleTheme } = useTheme();
-  const { inspect, toggle: toggleInspect } = useInspect();
-  useReveal();
 
   return (
     <ErrorBoundary>
       <SkipLink />
-      <Header
-        theme={theme}
-        onToggleTheme={toggleTheme}
-        inspect={inspect}
-        onToggleInspect={toggleInspect}
-      />
-      <IndexRail />
+      <Header theme={theme} onToggleTheme={toggleTheme} />
       <main id="content" className="page">
         <Hero />
         <About />
@@ -38,7 +26,6 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-      <InspectOverlay />
     </ErrorBoundary>
   );
 }

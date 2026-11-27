@@ -26,13 +26,12 @@ export default function Journey() {
       <div className="grid12">
         <div className="section-head" data-spec="--step-4 cols 1-12">
           <h2 id="journey-title" className="section-title">
-            Experience and education
+            Experience
           </h2>
           <span className="section-head__rule" aria-hidden="true" />
         </div>
       </div>
       <div className="journey" data-reveal>
-        <span className="journey__rail" aria-hidden="true" />
         <ol className="journey__list">
           {experience.map((e) => (
             <Entry key={e.index} item={e} />

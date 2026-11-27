@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import ThemeToggle from '../ui/ThemeToggle';
-import InspectToggle from '../ui/InspectToggle';
 import { MenuIcon, CloseIcon } from '../ui/Icons';
 import { profile } from '../../data/profile';
 
@@ -12,11 +11,10 @@ const NAV = [
   ['Contact', '#contact']
 ];
 
-export default function Header({ theme, onToggleTheme, inspect, onToggleInspect }) {
+export default function Header({ theme, onToggleTheme }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
 
-  // Close on Escape and on route change (link click handled in MobileMenu).
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -26,7 +24,6 @@ export default function Header({ theme, onToggleTheme, inspect, onToggleInspect 
     return () => document.removeEventListener('keydown', onKey);
   }, [open]);
 
-  // Close when focus leaves the menu entirely.
   useEffect(() => {
     if (!open) return;
     const onFocus = (e) => {
@@ -37,7 +34,7 @@ export default function Header({ theme, onToggleTheme, inspect, onToggleInspect 
   }, [open]);
 
   return (
-    <header className="site-header" data-spec="header">
+    <header className="site-header">
       <div className="page site-header__inner">
         <a href="#top" className="site-header__brand mono">
           {profile.name}
@@ -52,23 +49,17 @@ export default function Header({ theme, onToggleTheme, inspect, onToggleInspect 
         </nav>
 
         <div className="site-header__actions">
-          <div className="site-header__actions-desktop">
-            <InspectToggle inspect={inspect} onToggle={onToggleInspect} />
-            <ThemeToggle theme={theme} onToggle={onToggleTheme} />
-          </div>
-          <div className="site-header__actions-mobile">
-            <ThemeToggle theme={theme} onToggle={onToggleTheme} />
-            <button
-              type="button"
-              className="icon-btn"
-              aria-expanded={open}
-              aria-controls="mobile-menu"
-              aria-label={open ? 'Close menu' : 'Open menu'}
-              onClick={() => setOpen((v) => !v)}
-            >
-              {open ? <CloseIcon /> : <MenuIcon />}
-            </button>
-          </div>
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+          <button
+            type="button"
+            className="icon-btn site-header__menu-btn"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <CloseIcon /> : <MenuIcon />}
+          </button>
         </div>
       </div>
 
@@ -90,16 +81,6 @@ export default function Header({ theme, onToggleTheme, inspect, onToggleInspect 
               {label}
             </a>
           ))}
-          <a
-            href={profile.resumePath}
-            download={profile.resumeFileName}
-            className="mobile-menu__link"
-            onClick={() => setOpen(false)}
-            tabIndex={open ? 0 : -1}
-          >
-            <span className="mono mobile-menu__num">07</span>
-            Download résumé
-          </a>
         </nav>
       </div>
     </header>

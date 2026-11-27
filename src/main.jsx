@@ -4,7 +4,6 @@ import App from './App';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/site.css';
-import './styles/inspect.css';
 import './styles/print.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

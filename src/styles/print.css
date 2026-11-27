@@ -30,9 +30,6 @@
   }
 
   .no-print,
-  .inspect-overlay,
-  .preview-plate,
-  .index-rail,
   .skip-link,
   .mobile-menu,
   .site-header__actions,
@@ -40,11 +37,8 @@
   .hero__figure,
   .hero__ctas,
   .hero__meta,
-  .hero__resume,
-  .project-row__thumb,
   .project-row__links,
-  .journey__rail,
-  .about__placeholder {
+  .contact__reveal {
     display: none !important;
   }
 
@@ -88,7 +82,7 @@
   .hero__ctas {
     margin-top: 2mm;
   }
-  .hero__resume,
+  .hero__ctas,
   .hero__meta {
     margin-top: 1.5mm;
     font-size: 8pt;
@@ -121,11 +115,6 @@
     display: block;
     padding-block: 0.6mm;
     break-inside: avoid;
-  }
-  .project-row__index {
-    display: inline;
-    font-size: 9pt;
-    margin-right: 1.5mm;
   }
   .project-row__head {
     display: inline;
@@ -282,10 +271,6 @@
     flex-wrap: wrap;
     gap: 1mm 4mm;
     align-items: baseline;
-  }
-  .site-footer__list a {
-    min-height: 0;
-    font-size: 7.5pt;
   }
   .site-footer__copy {
     font-size: 7.5pt;

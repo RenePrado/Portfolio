@@ -16,9 +16,9 @@ export const experience = [
   },
   {
     index: '02',
-    role: 'Frontend Developer Intern (300 hours)',
+    role: 'Frontend Developer Intern',
     org: 'Simplevia Technologies Inc.',
-    meta: 'Makati City, Philippines',
+    meta: 'Makati City, Philippines · 300 hours',
     dates: 'Oct 2025 – Nov 2025',
     bullets: [
       'Resolved 14 bugs across API handling, data bindings, event handlers, and data inconsistencies.',
