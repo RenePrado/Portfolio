@@ -35,14 +35,14 @@ export default function Hero() {
               Contact me
             </a>
           </div>
-          <p className="mono hero__resume hero-in" style={{ animationDelay: '190ms' }}>
+          <p className="hero__resume hero-in" style={{ animationDelay: '190ms' }}>
             <a
               href={profile.resumePath}
               download={profile.resumeFileName}
               className="u-draw"
               aria-label="Download résumé PDF"
             >
-              <DownloadIcon /> Résumé
+              <DownloadIcon /> Download résumé
             </a>
             <a
               href={profile.resumePath}
@@ -51,7 +51,7 @@ export default function Hero() {
               className="u-draw"
               aria-label="Preview résumé PDF in a new tab"
             >
-              Preview <ExternalIcon />
+              Preview résumé <ExternalIcon />
             </a>
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function Hero() {
             height={profile.portrait.height}
             alt={profile.portrait.alt}
             fetchPriority={profile.portrait.fetchPriority}
-            caption="Fig. 01, Rene Angelo Prado, Quezon City"
+            caption="Fig. 01, Quezon City"
             className="hero__frame"
           />
         </div>
