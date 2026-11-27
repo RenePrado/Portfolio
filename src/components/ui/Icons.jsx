@@ -68,6 +68,14 @@ export function CopyIcon(props) {
   );
 }
 
+export function ArrowUpRightIcon(props) {
+  return (
+    <svg viewBox="0 0 16 16" width="12" height="12" {...base} {...props}>
+      <path d="M6 3h7v7M13 3 6.5 9.5" />
+    </svg>
+  );
+}
+
 export function CheckIcon(props) {
   return (
     <svg viewBox="0 0 16 16" width="13" height="13" {...base} {...props}>
