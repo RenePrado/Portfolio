@@ -577,72 +577,57 @@
   }
 }
 
-/* ---------- Journey ---------- */
-.journey {
-  position: relative;
-  margin-top: var(--space-7);
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-}
+/* ---------- Experience ---------- */
 .journey__list {
-  grid-column: 1 / -1;
   list-style: none;
-  margin: 0;
+  margin: var(--space-8) 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
 }
 .journey__entry {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  position: relative;
+  grid-template-columns: 1fr;
+  gap: var(--space-2) var(--gutter);
+  padding-block: var(--space-7);
+}
+.journey__entry + .journey__entry {
+  border-top: 1px solid var(--line);
 }
 .journey__dates {
-  order: -1;
-  grid-column: 1 / -1;
+  order: -1; /* mobile: date above the role title */
   font-size: var(--step-0);
   color: var(--muted);
-}
-.journey__body {
-  grid-column: 1 / -1;
-  min-width: 0;
 }
 .journey__role {
   font-family: var(--font-display);
   font-size: var(--step-3); /* 20px mobile */
   font-weight: 560;
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .journey__role {
-    font-size: var(--step-4); /* 24px desktop */
+    font-size: var(--step-4); /* 24px */
   }
-}
-.journey__org {
-  margin-top: var(--space-1);
-  font-family: var(--font-body);
-  font-size: var(--step-1);
-  font-weight: 400;
-  color: var(--muted);
 }
 .journey__meta {
   margin-top: var(--space-1);
+  font-family: var(--font-mono);
   font-size: var(--step-0);
+  letter-spacing: 0.02em;
   color: var(--muted);
 }
 .journey__bullets {
-  margin: var(--space-3) 0 0;
+  margin: var(--space-4) 0 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   font-size: var(--step-1);
-  line-height: 1.65;
-  color: var(--muted);
+  line-height: 1.6;
+  color: var(--ink);
   max-width: 68ch;
 }
 .journey__bullets li {
@@ -658,18 +643,24 @@
   height: 1px;
   background: var(--faint);
 }
-
-@media (min-width: 768px) {
+.journey__edu {
+  margin-top: var(--space-7);
+  font-size: var(--step-0);
+  color: var(--muted);
+}
+@media (min-width: 640px) {
+  .journey__entry {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
+  }
   .journey__dates {
     order: 0;
     grid-column: 1 / 4;
-    text-align: left;
-    padding-top: 0.3em;
-    /* Clear the journey rail (8px in) with a consistent left edge. */
-    padding-left: var(--space-4);
+    padding-top: 0.35em;
   }
   .journey__body {
     grid-column: 4 / 13;
+    min-width: 0;
   }
 }
 

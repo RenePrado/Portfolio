@@ -1,5 +1,5 @@
-// Experience + education, most recent first. Dates displayed verbatim-style;
-// no durations are computed or shown.
+// Experience — two entries, most recent first. Education renders as a
+// single quiet line under the list (see Journey.jsx), not a timeline item.
 
 export const experience = [
   {
@@ -28,13 +28,5 @@ export const experience = [
   }
 ];
 
-export const education = [
-  {
-    index: '03',
-    role: 'Bachelor of Science in Computer Science',
-    org: 'New Era University',
-    meta: 'Quezon City, Philippines',
-    dates: 'Aug 2022 – Jun 2026',
-    bullets: []
-  }
-];
+// Quiet education line — facts from the résumé.
+export const educationLine = 'B.S. Computer Science, New Era University, 2022–2026';
