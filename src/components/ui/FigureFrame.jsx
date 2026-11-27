@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unknown-property -- React 18 DOM only accepts lowercase fetchpriority */
 import { useState } from 'react';
 
-// FigureFrame — the page's only ornament: L-shaped crop marks + mono
-// caption framing a real image (or a marked placeholder when `src` is null
-// or fails to load).
+// FigureFrame — the page's only ornament: L-shaped crop marks flush with
+// the media frame + mono caption. When `src` is null or fails to load, a
+// marked placeholder renders (dev/layout testing only in practice).
 export default function FigureFrame({
   src,
   srcSet,
@@ -14,6 +14,7 @@ export default function FigureFrame({
   height,
   alt = '',
   caption,
+  pendingFig = 'Fig. —',
   fetchPriority,
   className = ''
 }) {
@@ -22,11 +23,11 @@ export default function FigureFrame({
 
   return (
     <figure className={`fig-frame ${className}`}>
-      <span className="crop crop--tl" aria-hidden="true" />
-      <span className="crop crop--tr" aria-hidden="true" />
-      <span className="crop crop--bl" aria-hidden="true" />
-      <span className="crop crop--br" aria-hidden="true" />
       <div className="fig-frame__media">
+        <span className="crop crop--tl" aria-hidden="true" />
+        <span className="crop crop--tr" aria-hidden="true" />
+        <span className="crop crop--bl" aria-hidden="true" />
+        <span className="crop crop--br" aria-hidden="true" />
         {showImage ? (
           <picture>
             {avifSrcSet ? (
@@ -54,7 +55,7 @@ export default function FigureFrame({
             role="img"
             aria-label={alt || caption || 'Image pending'}
           >
-            <span className="mono">Fig. —</span>
+            <span className="mono">{pendingFig}</span>
             <span className="mono fig-frame__pending-note">
               screenshot pending
             </span>

@@ -1,13 +1,20 @@
+import { useEffect, useRef, useState } from 'react';
 import { profile } from '../../data/profile';
 import CopyEmail from '../ui/CopyEmail';
 import { ExternalIcon } from '../ui/Icons';
 
 export default function Contact() {
+  const [showPhone, setShowPhone] = useState(false);
+  const phoneRef = useRef(null);
+
+  useEffect(() => {
+    if (showPhone) phoneRef.current?.focus();
+  }, [showPhone]);
+
   return (
     <section id="contact" className="section" aria-labelledby="contact-title">
       <div className="grid12">
         <div className="section-head" data-spec="--step-4 · grid 1–12">
-          <p className="mono section-index">06 — Contact</p>
           <h2 id="contact-title" className="section-title">
             Contact
           </h2>
@@ -27,34 +34,46 @@ export default function Contact() {
           <CopyEmail email={profile.email} />
         </p>
 
-        <ul className="contact__rows mono">
+        <ul className="contact__rows">
           <li>
             <span className="contact__key">GitHub</span>
             <a
-              className="u-draw"
+              className="contact__ext"
               href={profile.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {profile.github} <ExternalIcon />
+              <span className="contact__ext-text u-draw">{profile.github}</span>
+              <ExternalIcon />
             </a>
           </li>
           <li>
             <span className="contact__key">LinkedIn</span>
             <a
-              className="u-draw"
+              className="contact__ext"
               href={profile.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {profile.linkedinLabel} <ExternalIcon />
+              <span className="contact__ext-text u-draw">{profile.linkedinLabel}</span>
+              <ExternalIcon />
             </a>
           </li>
           <li>
             <span className="contact__key">Phone</span>
-            <a className="u-draw" href={`tel:${profile.phoneTel}`} aria-label={profile.phoneAria}>
-              {profile.phoneDisplay}
-            </a>
+            {showPhone ? (
+              <a ref={phoneRef} className="u-draw" href={`tel:${profile.phoneTel}`}>
+                {profile.phonePretty}
+              </a>
+            ) : (
+              <button
+                type="button"
+                className="contact__reveal mono"
+                onClick={() => setShowPhone(true)}
+              >
+                Show phone number
+              </button>
+            )}
           </li>
         </ul>
       </div>

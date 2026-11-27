@@ -16,6 +16,7 @@
   --selection-bg: #9c4f16;
   --selection-ink: #f5f0e8;
   --grid-line: rgba(28, 24, 20, 0.14);
+  --mat: #f1eadd; /* warm mat behind figures, both themes */
   --spec-ink: #9c4f16;
 
   /* Typography */
@@ -77,6 +78,7 @@
     --selection-bg: #d98a4a;
     --selection-ink: #1c1814;
     --grid-line: rgba(236, 229, 216, 0.12);
+    --mat: #f1eadd;
     --spec-ink: #d98a4a;
   }
 }
@@ -94,5 +96,6 @@
   --selection-bg: #d98a4a;
   --selection-ink: #1c1814;
   --grid-line: rgba(236, 229, 216, 0.12);
+  --mat: #f1eadd;
   --spec-ink: #d98a4a;
 }
