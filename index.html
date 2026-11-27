@@ -18,8 +18,8 @@
     <!-- TODO: replace with the production domain when known -->
     <link rel="canonical" href="https://example.com/" />
 
-    <meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1c1814" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#15120e" />
+    <meta name="theme-color" content="#f3eee4" media="(prefers-color-scheme: light) and (script: none)" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -78,9 +78,7 @@
             t = localStorage.getItem('theme');
           }
           if (t !== 'dark' && t !== 'light') {
-            t = window.matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light';
+            t = 'dark'; // dark-first: ignore system preference on first visit
           }
           document.documentElement.dataset.theme = t;
         } catch (e) {

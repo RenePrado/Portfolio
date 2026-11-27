@@ -1,23 +1,21 @@
 /* Design tokens — single source of truth for color, type, spacing, grid, motion.
-   Theme is applied via [data-theme] on <html> (set by an inline script before
-   paint). The prefers-color-scheme fallback keeps no-JS visitors themed. */
+   Dark is the default theme (:root). Light applies via [data-theme='light']
+   on <html>, set by an inline script before paint. */
 
 :root {
-  /* Color — light theme (default) */
-  --paper: #f5f0e8;
-  --surface: #fffdf9;
-  --ink: #1c1814;
-  --muted: #5c5046;
-  --faint: #8a7f72; /* decorative only — never body text */
-  --line: #ddd2bf;
-  --line-strong: #b9ab93;
-  --accent: #9c4f16;
-  --on-accent: #f5f0e8;
-  --selection-bg: #9c4f16;
-  --selection-ink: #f5f0e8;
-  --grid-line: rgba(28, 24, 20, 0.14);
-  --mat: #f1eadd; /* warm mat behind figures, both themes */
-  --spec-ink: #9c4f16;
+  /* Color — dark theme (default) */
+  --paper: #15120e;        /* bg */
+  --surface: #1e1a15;      /* bg-secondary */
+  --ink: #f0e8d8;          /* text */
+  --muted: #a89c88;        /* text-secondary */
+  --faint: #6f6455;        /* decorative only — never body text */
+  --line: #332c23;         /* border */
+  --line-strong: #4d443a;  /* stronger hairline */
+  --accent: #e8905a;
+  --accent-hover: #f2a573;
+  --on-accent: #15120e;
+  --selection-bg: #e8905a;
+  --selection-ink: #15120e;
 
   /* Typography */
   --font-display: 'Fraunces Variable', 'Fraunces Fallback', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
@@ -39,7 +37,7 @@
   /* Contact email — spec: clamp(30px, 5.5vw, 72px) */
   --step-email: clamp(1.875rem, 5.5vw, 4.5rem);
 
-  --leading-body: 1.65;
+  --leading-body: 1.6;
   --leading-tight: 1.08;
 
   /* Spacing — 4px base */
@@ -56,10 +54,9 @@
   /* Layout */
   --page-max: 75rem;          /* 1200px */
   --grid-cols: 12;
-  --gutter: clamp(1rem, 2.5vw, 1.75rem);
-  --rail-w: 6.5rem;
+  --gutter: 1.5rem;           /* 24px grid gutters */
   --section-pad: clamp(3.5rem, 2rem + 6vw, 7rem);
-  --radius: 2px;
+  --radius: 4px;
 
   /* Motion */
   --dur-1: 140ms;
@@ -69,38 +66,19 @@
   --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --paper: #1c1814;
-    --surface: #242018;
-    --ink: #ece5d8;
-    --muted: #a89f94;
-    --faint: #6f675c;
-    --line: #38322b;
-    --line-strong: #4d463c;
-    --accent: #d98a4a;
-    --on-accent: #1c1814;
-    --selection-bg: #d98a4a;
-    --selection-ink: #1c1814;
-    --grid-line: rgba(236, 229, 216, 0.12);
-    --mat: #f1eadd;
-    --spec-ink: #d98a4a;
-  }
-}
-
-:root[data-theme='dark'] {
-  --paper: #1c1814;
-  --surface: #242018;
-  --ink: #ece5d8;
-  --muted: #a89f94;
-  --faint: #6f675c;
-  --line: #38322b;
-  --line-strong: #4d463c;
-  --accent: #d98a4a;
-  --on-accent: #1c1814;
-  --selection-bg: #d98a4a;
-  --selection-ink: #1c1814;
-  --grid-line: rgba(236, 229, 216, 0.12);
-  --mat: #f1eadd;
-  --spec-ink: #d98a4a;
+:root[data-theme='light'] {
+  --paper: #f3eee4;        /* bg */
+  --surface: #e9e2d4;      /* bg-secondary */
+  --ink: #1b1712;          /* text */
+  --muted: #5c5448;        /* text-secondary */
+  --faint: #a2977f;        /* decorative only — never body text */
+  --line: #d3c9b6;         /* border */
+  --line-strong: #b3a78d;  /* stronger hairline */
+  /* #AD400C not #B4440E: spec hex measures 4.32:1 on --surface (needs 4.5).
+     Darkened one step; hover #8E3208 remains the darker variant. */
+  --accent: #ad400c;
+  --accent-hover: #8e3208;
+  --on-accent: #f3eee4;
+  --selection-bg: #b4440e;
+  --selection-ink: #f3eee4;
 }

@@ -14,13 +14,13 @@
   }
 
   html {
-    color-scheme: light;
+    color-scheme: dark;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
 
-  html[data-theme='dark'] {
-    color-scheme: dark;
+  html[data-theme='light'] {
+    color-scheme: light;
   }
 
   body {

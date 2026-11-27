@@ -1,20 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const STORAGE_KEY = 'theme';
-
-function readTheme() {
-  try {
-    return localStorage.getItem(STORAGE_KEY);
-  } catch {
-    return null;
-  }
-}
-
-function systemTheme() {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
-}
 
 function apply(theme) {
   document.documentElement.dataset.theme = theme;
@@ -28,8 +14,8 @@ function apply(theme) {
 export function useTheme() {
   const [theme, setTheme] = useState(() =>
     typeof document === 'undefined'
-      ? 'light'
-      : document.documentElement.dataset.theme || systemTheme()
+      ? 'dark'
+      : document.documentElement.dataset.theme || 'dark'
   );
 
   const toggle = useCallback(() => {
@@ -45,19 +31,8 @@ export function useTheme() {
     }
   }, [theme]);
 
-  // Follow OS changes only when the user has no explicit stored choice.
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const onChange = () => {
-      if (!readTheme()) {
-        const next = systemTheme();
-        apply(next);
-        setTheme(next);
-      }
-    };
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
+  // No OS listener: dark is the default for every first visit; once the
+  // visitor picks a theme it is remembered in localStorage.
 
   return { theme, toggle };
 }

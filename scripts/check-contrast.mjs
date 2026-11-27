@@ -26,8 +26,8 @@ function block(selector) {
 }
 
 const themes = {
-  light: { ...block(':root') },
-  dark: { ...block(":root[data-theme='dark']") }
+  dark: { ...block(':root') },
+  light: { ...block(":root[data-theme='light']") }
 };
 
 function lum(hex) {
