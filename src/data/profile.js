@@ -1,9 +1,16 @@
 export const profile = {
   name: 'Rene Angelo Prado',
   nameShort: 'Rene Angelo Prado',
+  // Hero name renders as two lines; "Prado" is indented ~2 columns.
+  nameLines: ['Rene Angelo', 'Prado'],
   role: 'Front-End Developer',
+  // TODO(owner): confirm eyebrow wording.
+  eyebrow: 'Front-end developer · Quezon City',
+  // TODO(owner): confirm availability wording before launch.
+  availability: 'Open to junior front-end roles & freelance',
+  // TODO(owner): draft lead copy — confirm or replace.
   intro:
-    'I build responsive, user-friendly interfaces with a simple and thoughtful front-end approach. I enjoy turning ideas into clean web experiences that are practical and easy to use.',
+    'I turn Figma designs into responsive Vue and React interfaces, and build e-commerce funnels for clients across five markets.',
   location: 'Quezon City, Philippines',
   email: 'reneangeloprado50@gmail.com',
   // Full number shown only after the visitor asks for it (see Contact.jsx).
@@ -15,6 +22,9 @@ export const profile = {
   linkedinLabel: 'linkedin.com/in/reneprado50',
   resumePath: '/Rene-Angelo-Prado-Resume.pdf',
   resumeFileName: 'Rene-Angelo-Prado-Resume.pdf',
+  // Single source for the portrait path — swap files here only.
+  // Existing square source is cropped to 4:5 via object-fit: cover;
+  // replace with a real 900×1125 WebP when available.
   portrait: {
     src: '/assets/portrait/portrait-800.jpg',
     srcSet: '/assets/portrait/portrait-480.jpg 480w, /assets/portrait/portrait-800.jpg 800w',
@@ -22,9 +32,9 @@ export const profile = {
       '/assets/portrait/portrait-480.avif 480w, /assets/portrait/portrait-800.avif 800w',
     webpSrcSet:
       '/assets/portrait/portrait-480.webp 480w, /assets/portrait/portrait-800.webp 800w',
-    sizes: '(min-width: 1024px) 280px, 40vw',
-    width: 800,
-    height: 800,
+    sizes: '(min-width: 1024px) 300px, (min-width: 640px) 220px, 96px',
+    width: 300,
+    height: 375,
     alt: 'Portrait of Rene Angelo Prado',
     fetchPriority: 'high'
   }

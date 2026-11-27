@@ -1,20 +1,5 @@
 /* Site — all component styles. Colors/type/spacing come from tokens.css. */
 
-/* ---------- Reveal (JS-gated, reduced-motion safe) ---------- */
-@media (prefers-reduced-motion: no-preference) {
-  .reveal {
-    opacity: 0;
-    transform: translateY(14px);
-    transition:
-      opacity var(--dur-3) var(--ease-out),
-      transform var(--dur-3) var(--ease-out);
-  }
-  .reveal.is-in {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -210,78 +195,150 @@
 
 /* ---------- Hero ---------- */
 .hero {
-  padding-block: clamp(3rem, 7vw, 7rem) var(--section-pad);
+  min-height: min(calc(100svh - 3.5rem), 820px);
+  display: flex;
+  align-items: center;
+  padding-block: var(--space-7);
 }
 .hero__grid {
-  align-items: start;
+  width: 100%;
+  display: grid;
+  gap: var(--space-6) var(--gutter);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-areas:
+    'meta meta fig fig'
+    'name name name name'
+    'intro intro intro intro';
+  align-items: center;
 }
-.hero__copy {
-  grid-column: 1 / -1;
+.hero__meta {
+  grid-area: meta;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
-.hero__role {
+.hero__eyebrow {
+  color: var(--muted);
+}
+.hero__availability {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   font-size: var(--step-0);
   color: var(--muted);
 }
+.hero__dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
 .hero__name {
-  margin-top: var(--space-4);
+  grid-area: name;
   font-family: var(--font-display);
   font-size: var(--step-name);
   font-weight: 560;
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--ink);
-  overflow-wrap: break-word;
 }
-.hero__intro {
-  margin-top: var(--space-5);
-  max-width: 46ch;
-  font-size: var(--step-2);
-  line-height: 1.5;
-  color: var(--muted);
-}
-@media (min-width: 768px) {
-  .hero__intro {
-    font-size: var(--step-3); /* 20px desktop / 18px mobile */
-  }
-}
-.hero__ctas {
-  margin-top: var(--space-6);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
+.hero__line {
+  display: block;
 }
 .hero__figure {
-  grid-column: 1 / -1;
-  margin-top: var(--space-7);
-  max-width: 22rem;
+  grid-area: fig;
+  justify-self: end;
+  width: 96px;
+  height: 120px; /* 4:5 mobile portrait */
 }
 .hero__figure img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
   border-radius: var(--radius);
+}
+.hero__intro {
+  grid-area: intro;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+.hero__lead {
+  max-width: 46ch;
+  font-size: var(--step-2); /* 18px mobile */
+  line-height: 1.5;
+  color: var(--muted);
+}
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+}
+.hero__resume {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--step-1);
+  color: var(--ink);
+  text-decoration: none;
+}
+.hero__resume:hover {
+  color: var(--accent);
+}
+
+@media (min-width: 640px) {
+  .hero__grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-areas:
+      'meta meta meta meta meta fig fig fig'
+      'name name name name name fig fig fig'
+      'intro intro intro intro intro fig fig fig';
+  }
+  .hero__lead {
+    font-size: var(--step-3); /* 20px */
+  }
+  .hero__figure {
+    width: 220px;
+    height: 275px; /* 4:5 tablet portrait */
+    align-self: start;
+  }
 }
 
 @media (min-width: 1024px) {
-  .hero__copy {
-    grid-column: 1 / 10;
+  .hero__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas:
+      'meta meta meta meta meta meta meta meta meta fig fig fig'
+      'name name name name name name name name name fig fig fig'
+      'intro intro intro intro intro intro intro intro intro fig fig fig';
   }
   .hero__figure {
-    grid-column: 10 / 13;
-    margin-top: var(--space-8);
-    max-width: none;
+    width: 300px;
+    height: 375px; /* 4:5 desktop portrait */
+  }
+  /* "Prado" indented ~2 columns of the 12-col grid */
+  .hero__line--indent {
+    padding-left: 22%;
   }
 }
 
-/* Hero entrance — transform-only, ≤600ms total, no-JS safe, off under reduced motion */
+/* The site's only entrance animation: name lines rise/fade, 80ms stagger. */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-in {
-    animation: hero-in 400ms var(--ease-out) both;
+  .hero__line {
+    animation: hero-line 480ms var(--ease-out) both;
+    animation-delay: calc(var(--i) * 80ms);
   }
-  @keyframes hero-in {
+  @keyframes hero-line {
     from {
-      transform: translateY(18px);
+      opacity: 0;
+      transform: translateY(0.35em);
     }
     to {
+      opacity: 1;
       transform: none;
     }
   }
