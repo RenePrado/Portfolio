@@ -185,24 +185,24 @@
 .hero__name {
   margin-top: var(--space-4);
   font-family: var(--font-display);
-  font-size: var(--step-6);
+  font-size: var(--step-name);
   font-weight: 560;
-  line-height: 0.98;
-  letter-spacing: -0.015em;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   color: var(--ink);
-  font-variation-settings:
-    'wght' var(--fx-wght, 560),
-    'opsz' var(--fx-opsz, 144),
-    'SOFT' var(--fx-soft, 0),
-    'WONK' 0;
   overflow-wrap: break-word;
 }
 .hero__intro {
   margin-top: var(--space-5);
-  max-width: 36ch;
-  font-size: var(--step-1);
-  line-height: 1.7;
+  max-width: 46ch;
+  font-size: var(--step-2);
+  line-height: 1.5;
   color: var(--muted);
+}
+@media (min-width: 768px) {
+  .hero__intro {
+    font-size: var(--step-3); /* 20px desktop / 18px mobile */
+  }
 }
 .hero__ctas {
   margin-top: var(--space-6);
@@ -260,8 +260,14 @@
   padding-bottom: var(--space-5);
 }
 .section-title {
-  font-size: var(--step-4);
+  font-size: var(--step-5); /* 32px mobile */
   font-weight: 560;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .section-title {
+    font-size: var(--step-7); /* 48px desktop */
+  }
 }
 .section-head__rule {
   flex: 1;
@@ -303,9 +309,14 @@
 }
 .project-row__title {
   font-family: var(--font-display);
-  font-size: var(--step-2);
+  font-size: var(--step-5); /* 26px mobile */
   font-weight: 560;
   line-height: 1.2;
+}
+@media (min-width: 768px) {
+  .project-row__title {
+    font-size: var(--step-6); /* 36px desktop */
+  }
 }
 .project-row__dates {
   margin-top: var(--space-1);
@@ -438,9 +449,14 @@
 }
 .journey__role {
   font-family: var(--font-display);
-  font-size: var(--step-3);
+  font-size: var(--step-3); /* 20px mobile */
   font-weight: 560;
   line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .journey__role {
+    font-size: var(--step-4); /* 24px desktop */
+  }
 }
 .journey__org {
   margin-top: var(--space-1);
@@ -549,7 +565,7 @@
 }
 .contact__email {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 0.5rem + 5.5vw, 4.5rem);
+  font-size: var(--step-email);
   font-weight: 480;
   line-height: 1.02;
   letter-spacing: -0.01em;

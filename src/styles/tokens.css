@@ -24,15 +24,20 @@
   --font-body: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Mono', 'SF Mono', Menlo, Consolas, monospace;
 
-  --step--2: 0.625rem;   /* 10px — spec labels only */
-  --step--1: 0.6875rem;  /* 11px — mono labels, captions */
-  --step-0: 0.8125rem;   /* 13px — mono body/meta */
-  --step-1: 0.9375rem;   /* 15px */
-  --step-2: 1.125rem;    /* 18px — row titles */
-  --step-3: 1.375rem;    /* 22px — h3 */
-  --step-4: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);  /* 28–40px — h2 */
-  --step-5: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);   /* 40–72px — section numerals/emphasis */
-  --step-6: clamp(3rem, 1rem + 8.5vw, 8rem);        /* hero name */
+  --step--1: 0.75rem;    /* 12px — mono floor (metadata only) */
+  --step-0: 0.8125rem;   /* 13px — mono labels */
+  --step-1: 1rem;        /* 16px — body (mobile) */
+  --step-2: 1.125rem;    /* 18px — lead (mobile), small headings */
+  --step-3: 1.25rem;     /* 20px — lead (desktop) */
+  --step-4: 1.5rem;      /* 24px — role titles */
+  --step-5: 2rem;        /* 32px — h2 (mobile), project title (mobile) */
+  --step-6: 2.25rem;     /* 36px — project title (desktop) */
+  --step-7: 3rem;        /* 48px — h2 (desktop) */
+
+  /* Hero name — spec: clamp(52px, 9.5vw, 136px), lh .95, ls -0.03em */
+  --step-name: clamp(3.25rem, 9.5vw, 8.5rem);
+  /* Contact email — spec: clamp(30px, 5.5vw, 72px) */
+  --step-email: clamp(1.875rem, 5.5vw, 4.5rem);
 
   --leading-body: 1.65;
   --leading-tight: 1.08;

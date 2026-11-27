@@ -282,6 +282,6 @@
   }
 
   h1, h2, h3 {
-    font-variation-settings: 'opsz' 14;
+    font-optical-sizing: auto;
   }
 }
